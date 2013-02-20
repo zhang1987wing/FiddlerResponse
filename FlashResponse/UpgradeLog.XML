@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="FlashResponse">
+</Property><Property Name="Solution File" Value="E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse.sln">
+</Property><Property Name="User Options File" Value="E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse.suo">
+</Property><Property Name="Date" Value="2013年2月19日">
+</Property><Property Name="Time" Value="10:42">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="FlashResponse.sln" Description="File successfully backed up as E:\GitHub\FiddlerResponse\FlashResponse\Backup\FlashResponse.sln">
+</Event><Event ErrorLevel="0" Project="" Source="FlashResponse.suo" Description="File successfully backed up as E:\GitHub\FiddlerResponse\FlashResponse\Backup\FlashResponse.suo">
+</Event><Event ErrorLevel="0" Project="FlashResponse" Source="FlashResponse\FlashResponse.csproj" Description="Project file successfully backed up as E:\GitHub\FiddlerResponse\FlashResponse\Backup\FlashResponse\FlashResponse.csproj">
+</Event><Event ErrorLevel="0" Project="FlashResponse" Source="FlashResponse\Main.cs" Description="File successfully backed up as E:\GitHub\FiddlerResponse\FlashResponse\Backup\FlashResponse\Main.cs">
+</Event><Event ErrorLevel="0" Project="FlashResponse" Source="FlashResponse\Properties\AssemblyInfo.cs" Description="File successfully backed up as E:\GitHub\FiddlerResponse\FlashResponse\Backup\FlashResponse\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="FlashResponse" Source="FlashResponse\FlashResponse.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="FlashResponse" Source="FlashResponse\FlashResponse.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="FlashResponse.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="FlashResponse.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="FlashResponse" Source="FlashResponse\FlashResponse.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

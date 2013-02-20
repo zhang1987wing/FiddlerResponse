@@ -1,0 +1,10 @@
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\FlashResponse.dll
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\FlashResponse.pdb
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Fiddler.exe
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.Zip.dll
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.Compression.Formats.dll
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.FileSystem.dll
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.Compression.dll
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\ResolveAssemblyReference.cache
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.dll
+E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.pdb
