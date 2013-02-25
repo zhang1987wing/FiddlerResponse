@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿namespace WindowsFormsApplication1
 {
     partial class Form1
@@ -242,6 +243,8 @@
 }
 
 =======
+=======
+>>>>>>> 6
 ﻿namespace WindowsFormsApplication1
 {
     partial class Form1
@@ -459,4 +462,7 @@
     }
 }
 
+<<<<<<< HEAD
 >>>>>>> 5
+=======
+>>>>>>> 6
