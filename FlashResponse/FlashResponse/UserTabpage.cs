@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace FlashResponse
 {
-    public partial class Form1 : Form
+    public partial class UserTabpage : TabPage
     {
         private int f = 0;
         private List<Para> paraName_list = new List<Para>(4);
@@ -18,14 +18,29 @@ namespace WindowsFormsApplication1
         private TextBox paraValue_tb;
         private ComboBox paraType_tb;
 
-        public Form1()
+        public UserTabpage()
         {
             InitializeComponent();
         }
 
+        public string getResponseTextBoxValue()
+        {
+            return this.response_ta.Text;
+        }
+
+        public string getUrlTextBoxValue()
+        {
+            return this.url_tb.Text;
+        }
+
+        public List<Para> getPara_list()
+        {
+            return paraName_list;
+        }
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void add_Button_Click(object sender, EventArgs e)
@@ -77,8 +92,8 @@ namespace WindowsFormsApplication1
 
             this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y + 10 + 21);
 
-            this.tabPage1.AutoScroll = true;
-            this.tabPage1.AutoScrollPosition = new Point(0, 60 + 21);
+            this.AutoScroll = true;
+            this.AutoScrollPosition = new Point(0, 60 + 21);
         }
 
         private void minus_Button_Click(object sender, EventArgs e)

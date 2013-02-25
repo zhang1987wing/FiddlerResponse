@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Fiddler;
 using System.Web.Security;
+using System.Text.RegularExpressions;
 
 [assembly: Fiddler.RequiredVersion("2.3.5.0")]
 
@@ -9,9 +10,8 @@ namespace FlashResponse
 {
     public class Main : IAutoTamper
     {
-        TabPage oPage;
-        TextBox prize;
-        string guid;
+        private UserTabpage oPage;
+        private AutoTamperRepBeforeHandler atrbh;
 
         public Main()
         {
@@ -26,11 +26,10 @@ namespace FlashResponse
         public void OnLoad() 
         { 
             /* Load your UI here */
-            oPage = new TabPage("FlashResponse");
-            prize = new TextBox();
-
-            oPage.Controls.Add(prize);
-            FiddlerApplication.UI.tabsViews.TabPages.Add(oPage); 
+            oPage = new UserTabpage();
+            oPage.Name = "FlashResponse";
+           
+            FiddlerApplication.UI.tabsViews.TabPages.Add(oPage);
         }
         public void OnBeforeUnload() { }
 
@@ -39,36 +38,12 @@ namespace FlashResponse
 
         public void AutoTamperResponseBefore(Session oSession)
         {
-            if (oSession.uriContains("luoqi/fun/option.php"))
-            {
-                string xx = oSession.url;
-                string[] requestPar = xx.Split(new char[2] {'?','&'});
 
-                foreach (string i in requestPar)
-                {
-                    if(i.ToString().Contains("guid="))
-                    {
-                        guid = i.ToString().Substring(i.ToString().IndexOf("=") + 1);
-                    }
-                }
-                oSession.utilSetResponseBody("irv=200|sign=" + this.Sign(oSession, prize.Text, guid) + "|couponw=asdafas" + "|prize=" + prize.Text);
-            } 
+            atrbh = new AutoTamperRepBeforeHandler(oSession, oPage);
+
+            atrbh.updateResponseBody();
         }
         public void AutoTamperResponseAfter(Session oSession) { }
         public void OnBeforeReturningError(Session oSession) { }
-
-        public string Sign(Session oSession, string prize, string guid)
-        {
-            string original = "";
-            string sign = "";
-
-            MessageBox.Show(guid);
-            original = "200" + guid + "asdafas" + prize + "@#a^9s87dW$%";
-            MessageBox.Show(original);
-            sign = FormsAuthentication.HashPasswordForStoringInConfigFile(original, "MD5").ToLower();
-
-            return sign;
-
-        }
     }
 }

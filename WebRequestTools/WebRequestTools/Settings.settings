@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WebRequestTools" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RequestEncoding" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GB2312</Value>
+    </Setting>
+    <Setting Name="ResponseEncoding" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GB2312</Value>
+    </Setting>
+    <Setting Name="Login_tiancity_key_test" Type="System.String" Scope="User">
+      <Value Profile="(Default)">23qYZaijQlmnkvwxyIN60GHOPopbcdRSWBCDKLM789AghEFTUVrstuefXJz145</Value>
+    </Setting>
+    <Setting Name="Login_tiancity_key" Type="System.String" Scope="User">
+      <Value Profile="(Default)">60GHINOPopqRSWX45JKLM789ABCDEFYZabcdTUVrstuefghijQlmnkvwxyz123</Value>
+    </Setting>
+    <Setting Name="Login_type" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tiancity</Value>
+    </Setting>
+    <Setting Name="RequestEncoding_autoheader" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Login_tiancity_url" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://passport.tiancity.com/login/login_check_json.aspx?username={0}&amp;cipherword={1}&amp;op=checkuser&amp;checkcode={2}</Value>
+    </Setting>
+    <Setting Name="proxy_type" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="output_len" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="proxy_all" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="proxy_use" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="debug_msg" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
