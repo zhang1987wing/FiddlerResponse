@@ -76,21 +76,41 @@ namespace WindowsFormsApplication1
             }
 
             this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y + 10 + 21);
-
             this.tabPage1.AutoScroll = true;
             this.tabPage1.AutoScrollPosition = new Point(0, 60 + 21);
         }
 
         private void minus_Button_Click(object sender, EventArgs e)
         {
-            string aa = "";
-
-            foreach (Para para in paraName_list)
+            if (paraName_list.Count > 0)
             {
-                aa += para.getParaName();
-            }
+                this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaNameTextBox());
+                this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaTypeComboBox());
+                this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaValueTextBox());
 
-            MessageBox.Show(aa);
+                paraName_list.RemoveAt(paraName_list.Count - 1);
+
+                this.groupBox3.Size = new System.Drawing.Size(this.groupBox3.Size.Width, this.groupBox3.Size.Height - 10 - 21);
+
+                foreach (Control btn in this.groupBox3.Controls)
+                {
+                    if (btn is Button)
+                    {
+                        btn.Location = new Point(btn.Location.X, btn.Location.Y - 10 - 21);
+                    }
+                }
+
+                this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y - 10 - 21);
+
+                this.tabPage1.AutoScroll = true;
+                this.tabPage1.AutoScrollPosition = new Point(0, 60 - 21);
+
+                f -= 1;
+            }
+            else
+            {
+                MessageBox.Show("没有参数了");
+            }
         }
     }
 }
