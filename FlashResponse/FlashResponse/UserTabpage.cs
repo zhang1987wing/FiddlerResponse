@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Fiddler;
 
 namespace FlashResponse
 {
@@ -21,6 +22,10 @@ namespace FlashResponse
         public UserTabpage()
         {
             InitializeComponent();
+
+            this.groupBox2.Enabled = false;
+            this.groupBox3.Enabled = false;
+            this.groupBox4.Enabled = false;
         }
 
         public string getResponseTextBoxValue()
@@ -38,9 +43,25 @@ namespace FlashResponse
             return paraName_list;
         }
 
+        public bool getCheckBox1()
+        {
+            return this.checkBox1.Checked;
+        }
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBox1.Checked == true)
+            {
+                this.groupBox2.Enabled = true;
+                this.groupBox3.Enabled = true;
+                this.groupBox4.Enabled = true;
+            }
+            else
+            {
+                this.groupBox2.Enabled = false;
+                this.groupBox3.Enabled = false;
+                this.groupBox4.Enabled = false;
+            }
         }
 
         private void add_Button_Click(object sender, EventArgs e)

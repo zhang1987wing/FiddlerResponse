@@ -51,7 +51,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Location = new System.Drawing.Point(4, 22);
-            this.Name = "tabPage1";
+            this.Name = "FlashResponse";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(421, 522);
             this.TabIndex = 0;
@@ -117,6 +117,7 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "请求地址";
+
             // 
             // url_tb
             // 

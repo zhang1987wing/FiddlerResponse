@@ -18,16 +18,13 @@ namespace FlashResponse
             /* NOTE: It's possible that Fiddler UI isn't fully loaded yet, so don't add any UI in the constructor.
 
                But it's also possible that AutoTamper* methods are called before OnLoad (below), so be
-               sure any needed data structures are initialized to safe values here in this constructor */
-
-            
+               sure any needed data structures are initialized to safe values here in this constructor */   
         }
 
         public void OnLoad() 
         { 
             /* Load your UI here */
             oPage = new UserTabpage();
-            oPage.Name = "FlashResponse";
            
             FiddlerApplication.UI.tabsViews.TabPages.Add(oPage);
         }
@@ -38,10 +35,11 @@ namespace FlashResponse
 
         public void AutoTamperResponseBefore(Session oSession)
         {
-
-            atrbh = new AutoTamperRepBeforeHandler(oSession, oPage);
-
-            atrbh.updateResponseBody();
+            if (oPage.getCheckBox1())
+            {
+                atrbh = new AutoTamperRepBeforeHandler(oSession, oPage);
+                atrbh.updateResponseBody();
+            }
         }
         public void AutoTamperResponseAfter(Session oSession) { }
         public void OnBeforeReturningError(Session oSession) { }
