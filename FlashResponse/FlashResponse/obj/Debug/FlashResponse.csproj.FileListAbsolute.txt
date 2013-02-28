@@ -8,12 +8,3 @@ E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.Compressio
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\ResolveAssemblyReference.cache
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.dll
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.pdb
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\FlashResponse.dll
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\FlashResponse.pdb
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.FileSystem.dll
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.Zip.dll
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.Compression.Formats.dll
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.Compression.dll
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.csprojResolveAssemblyReference.cache
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.dll
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.pdb
