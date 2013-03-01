@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisioDocument>
+	<DocumentProperties>
+		<Title></Title>
+		<HyperlinkBase href=""></HyperlinkBase>
+	</DocumentProperties>
+	<Pages>
+		<Page ID="0" Name="页-1" NameU="Page-1">
+			<Shapes>
+				<Shape ID="1" UniqueID="{7BEAAF82-2C46-447E-A204-CA2DC73396D3}" Name="空白窗体" NameU="Blank form" Master="0">
+					<Text>窗体标题</Text>
+					<XForm>
+						<PinX Unit="MM">4.133858267716534</PinX>
+						<PinY Unit="MM">7.283464566929134</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="10" UniqueID="{C098ED93-92D8-4EFE-80AD-D0202492972A}" Name="单选按钮" NameU="Radio button" Master="2">
+					<Text>启用</Text>
+					<XForm>
+						<PinX Unit="MM">0.688976377952756</PinX>
+						<PinY Unit="MM">10.103346456692913</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="15" UniqueID="{09E58070-9B16-4D53-8B67-544C7901E825}" Name="分组框" NameU="Group box" Master="3">
+					<Text>输入文本</Text>
+					<XForm>
+						<PinX Unit="MM">2.716535433070865</PinX>
+						<PinY Unit="MM">9.173228346456693</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="16" UniqueID="{BAAB82A8-5B4A-4AF2-B0C4-C1DF4972454F}" Name="组合框" NameU="Combo box" Master="4">
+					<Text>POST</Text>
+					<XForm>
+						<PinX Unit="MM">0.787401574803150</PinX>
+						<PinY Unit="MM">9.542322834645669</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="25" UniqueID="{12368479-60C7-40C1-BE42-90074CDD41A7}" Name="组合框扩展" NameU="Combo box expansion" Master="5">
+					<Text>GET</Text>
+					<XForm>
+						<PinX Unit="MM">1.771653543307100</PinX>
+						<PinY Unit="MM">9.438976377952756</PinY>
+					</XForm>
+					<Prop ID="1" Name="VerticalBar" NameU="VerticalBar">
+						<Value Unit="STR">50</Value>
+						<Label>垂直滚动条缩略图大小 (%)</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="48" UniqueID="{BD87B398-6BD5-4FDD-A621-0665823CA26D}" Name="分组框.48" NameU="Group box.48" Master="3">
+					<Text>输入文本</Text>
+					<XForm>
+						<PinX Unit="MM">2.716535433070866</PinX>
+						<PinY Unit="MM">7.972440944881888</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="49" UniqueID="{DEB41EA5-31BD-4F10-9C58-38C19C1CB242}" Name="文本框(单行)" NameU="Text box (single-line)" Master="6">
+					<Text>地址</Text>
+					<XForm>
+						<PinX Unit="MM">0.787401574803150</PinX>
+						<PinY Unit="MM">7.972440944881890</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="52" UniqueID="{5F4A2AE2-AE6D-4386-A8A4-83B2ECA4363F}" Name="分组框.52" NameU="Group box.52" Master="3">
+					<Text>输入文本</Text>
+					<XForm>
+						<PinX Unit="MM">2.696850393700787</PinX>
+						<PinY Unit="MM">6.535433070866142</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="53" UniqueID="{83B7D785-EA66-45E1-B490-9D29B0295128}" Name="组合框.53" NameU="Combo box.53" Master="4">
+					<Text>参数</Text>
+					<XForm>
+						<PinX Unit="MM">0.748031496062966</PinX>
+						<PinY Unit="MM">6.983267716535433</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="62" UniqueID="{52CCD7C3-D0BB-4ED4-95B0-8D8F309D6B5F}" Name="命令按钮" NameU="Command button" Master="7">
+					<Text>添加</Text>
+					<XForm>
+						<PinX Unit="MM">1.181102362204724</PinX>
+						<PinY Unit="MM">6.186023622047244</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="68" UniqueID="{5A6CC79E-FC1E-4CD3-9766-4903151BAEF9}" Name="命令按钮.68" NameU="Command button.68" Master="7">
+					<Text>删除</Text>
+					<XForm>
+						<PinX Unit="MM">2.524606299212598</PinX>
+						<PinY Unit="MM">6.186023622047244</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="74" UniqueID="{321FBF8D-10C0-4A23-B52B-CD13E97BAF16}" Name="分组框.74" NameU="Group box.74" Master="3">
+					<Text>输入文本</Text>
+					<XForm>
+						<PinX Unit="MM">2.716535433070865</PinX>
+						<PinY Unit="MM">4.803149606299213</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="75" UniqueID="{965DA578-B079-4DA5-B0C5-C02D25EFBCF7}" Name="文本框(单行).75" NameU="Text box (single-line).75" Master="6">
+					<Text>输入文本</Text>
+					<XForm>
+						<PinX Unit="MM">0.787401574803150</PinX>
+						<PinY Unit="MM">4.724409448818897</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="78" UniqueID="{4F2DDB2D-FA78-4EDC-AEDF-2347A5C1DF94}" Name="命令按钮.78" NameU="Command button.78" Master="7">
+					<Text>读取</Text>
+					<XForm>
+						<PinX Unit="MM">3.543307086614173</PinX>
+						<PinY Unit="MM">4.724409448818897</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+	</Pages>
+</VisioDocument>
