@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Fiddler;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace FlashResponse
 {
@@ -18,6 +20,11 @@ namespace FlashResponse
         private TextBox paraName_tb;
         private TextBox paraValue_tb;
         private ComboBox paraType_tb;
+        private ComboBox paraDataType_cb;
+        private ToolTip toolTip1;
+        String jsonText = "";
+        StringWriter sw;
+        JsonTextWriter writer;
 
         public UserTabpage()
         {
@@ -26,11 +33,24 @@ namespace FlashResponse
             this.groupBox2.Enabled = false;
             this.groupBox3.Enabled = false;
             this.groupBox4.Enabled = false;
+            this.signValue_text.Enabled = false;
+            this.preview_response.Enabled = false;
+            
+            toolTip1 = new ToolTip();
+ 
+			// Set up the delays for the ToolTip.
+			toolTip1.AutoPopDelay = 3000;
+			toolTip1.InitialDelay = 1000;
+			toolTip1.ReshowDelay = 500;
+			// Force the ToolTip text to be displayed whether or not the form is active.
+			toolTip1.ShowAlways = true;
+			    
+			toolTip1.SetToolTip(this.checkBox2, "启用该选项后，请求的response最后会添加urlencode编码后的值");
         }
 
-        public string getResponseTextBoxValue()
+        public TextBox getResponseTextBoxValue()
         {
-            return this.response_ta.Text;
+        	return this.response_ta;
         }
 
         public string getUrlTextBoxValue()
@@ -47,6 +67,16 @@ namespace FlashResponse
         {
             return this.checkBox1.Checked;
         }
+        
+        public CheckBox getCheckBox2()
+        {
+        	return this.checkBox2;
+        }
+        
+        public ComboBox getRequestType_cb()
+        {
+        	return this.requestType_cb;
+        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -55,31 +85,53 @@ namespace FlashResponse
                 this.groupBox2.Enabled = true;
                 this.groupBox3.Enabled = true;
                 this.groupBox4.Enabled = true;
+                this.preview_response.Enabled = true;
+                this.signValue_text.Enabled = true;
             }
             else
             {
                 this.groupBox2.Enabled = false;
                 this.groupBox3.Enabled = false;
                 this.groupBox4.Enabled = false;
+                this.preview_response.Enabled = false;
+                this.signValue_text.Enabled = false;
             }
         }
 
+        private void url_tb_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
+
+        private void response_ta_Keyup(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
+
+        /*添加按钮事件，并且将各个参数作为para的一个属性，将para添加值list中*/
         private void add_Button_Click(object sender, EventArgs e)
         {
             paraName_tb = new TextBox();
             paraValue_tb = new TextBox();
             paraType_tb = new ComboBox();
+            paraDataType_cb = new ComboBox();
 
-            this.draw_Para_Component(paraName_tb, paraValue_tb, paraType_tb, f);
+            this.draw_Para_Component(paraName_tb, paraValue_tb, paraType_tb, paraDataType_cb, f);
 
-            para = new Para(paraName_tb, paraValue_tb, paraType_tb);
+            para = new Para(paraName_tb, paraValue_tb, paraType_tb, paraDataType_cb);
             paraName_list.Add(para);
             paraName_list.TrimExcess();
 
             f += 1;
         }
 
-        private void draw_Para_Component(TextBox paraName_tb, TextBox paraValue_tb, ComboBox paraType_tb, int f)
+        private void draw_Para_Component(TextBox paraName_tb, TextBox paraValue_tb, ComboBox paraType_tb, ComboBox paraDataType_cb, int f)
         {
             paraName_tb.Location = new System.Drawing.Point(7, 10 * (f + 1) + 21 * (f + 1));
             paraName_tb.Name = "paraName_tb" + f;
@@ -89,12 +141,21 @@ namespace FlashResponse
             paraValue_tb.Name = "paraValue_tb" + f;
             paraValue_tb.Size = new System.Drawing.Size(100, 21);
 
+            paraDataType_cb.FormattingEnabled = true;
+            paraDataType_cb.Items.AddRange(new object[] {
+            "Int",
+            "Text"});
+            paraDataType_cb.Location = new System.Drawing.Point(291, 10 * (f + 1) + 21 * (f + 1));
+            paraDataType_cb.Name = "paraDataType_cb" + f;
+            paraDataType_cb.Size = new System.Drawing.Size(86, 21);
+            
             paraType_tb.FormattingEnabled = true;
             paraType_tb.Items.AddRange(new object[] {
             "MD5",
             "请求值",
             "响应值"});
-            paraType_tb.Location = new System.Drawing.Point(291, 10 * (f + 1) + 21 * (f + 1));
+            paraType_tb.SelectedValueChanged += new System.EventHandler(this.paraType_tb_SelectedIndexChanged);
+            paraType_tb.Location = new System.Drawing.Point(411, 10 * (f + 1) + 21 * (f + 1));
             paraType_tb.Name = "paraType_tb" + f;
             paraType_tb.Size = new System.Drawing.Size(86, 21);
 
@@ -102,6 +163,7 @@ namespace FlashResponse
             this.groupBox3.Controls.Add(paraName_tb);
             this.groupBox3.Controls.Add(paraValue_tb);
             this.groupBox3.Controls.Add(paraType_tb);
+            this.groupBox3.Controls.Add(paraDataType_cb);
 
             foreach (Control btn in this.groupBox3.Controls)
             {
@@ -112,11 +174,14 @@ namespace FlashResponse
             }
 
             this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y + 10 + 21);
-
+			this.sign_label.Location = new Point(this.sign_label.Location.X, this.sign_label.Location.Y + 10 + 21);
+            this.signValue_text.Location = new Point(this.signValue_text.Location.X, this.signValue_text.Location.Y + 10 + 21);
+            
             this.AutoScroll = true;
             this.AutoScrollPosition = new Point(0, 60 + 21);
         }
-
+        
+        /*取消按钮事件，删除多余的参数值*/
         private void minus_Button_Click(object sender, EventArgs e)
         {
             if (paraName_list.Count > 0)
@@ -124,6 +189,7 @@ namespace FlashResponse
                 this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaNameTextBox());
                 this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaTypeComboBox());
                 this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaValueTextBox());
+                this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaDataTypeComboBox());
 
                 paraName_list.RemoveAt(paraName_list.Count - 1);
 
@@ -138,7 +204,9 @@ namespace FlashResponse
                 }
 
                 this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y - 10 - 21);
-
+				this.sign_label.Location = new Point(this.sign_label.Location.X, this.sign_label.Location.Y - 10 - 21);
+                this.signValue_text.Location = new Point(this.signValue_text.Location.X, this.signValue_text.Location.Y - 10 - 21);
+                
                 this.AutoScroll = true;
                 this.AutoScrollPosition = new Point(0, 60 + 21);
 
@@ -148,6 +216,77 @@ namespace FlashResponse
             {
                 MessageBox.Show("没有参数了");
             }
+        }
+        
+        /*更新json原始值*/
+        private void paraType_tb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        	this.updatepPreview_response();
+        }
+        
+        private void requestType_cb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        	if(this.toolTip1 != null)
+        	{
+        		this.toolTip1.Dispose();
+        	}
+        	
+        	toolTip1.AutoPopDelay = 3000;
+			toolTip1.InitialDelay = 1;
+			toolTip1.ReshowDelay = 500;
+			// Force the ToolTip text to be displayed whether or not the form is active.
+			toolTip1.ShowAlways = true;
+			    
+			toolTip1.SetToolTip(this.groupBox2, "你选择的是" + this.requestType_cb.Text + "方式");
+        }
+        
+        /*更新json原始值方法，使用newtonsoft.json第三方控件编写json格式*/
+        public void updatepPreview_response()
+        {
+        	if (paraName_list.Count != 0)
+        	{
+        		this.preview_response.Text = "";
+        		sw = new StringWriter();
+        		writer = new Newtonsoft.Json.JsonTextWriter(sw);	
+        		writer.WriteStartObject();
+        	       		
+        		foreach(Para para in paraName_list)
+        		{
+        			if(para.getParaType() != "MD5")
+        			{
+        				if(para.getParaDataTypeComboBox().Text == "Int")
+        				{
+        					writer.WritePropertyName(para.getParaName());
+        					writer.WriteValue(Int32.Parse(para.getParaValue()));
+        				}
+        				else if(para.getParaDataTypeComboBox().Text == "Text")
+        				{
+        					writer.WritePropertyName(para.getParaName());
+        					writer.WriteValue(para.getParaValue());
+        				}
+        			}
+        		}
+        	
+        		writer.WriteEndObject();
+        		writer.Flush();
+        		jsonText = sw.GetStringBuilder().ToString();
+        		this.preview_response.Text = jsonText;
+        	}
+        	else
+        	{
+        		this.preview_response.Text = this.preview_response.Text;
+        	}
+        	
+        }
+        
+        public TextBox getPreviewTextbox()
+        {
+        	return this.preview_response;
+        }
+        
+        public TextBox getSignValue_text()
+        {
+        	return this.signValue_text;
         }
     }
 }

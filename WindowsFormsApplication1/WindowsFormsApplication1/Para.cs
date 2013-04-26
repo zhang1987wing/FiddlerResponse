@@ -11,12 +11,14 @@ namespace WindowsFormsApplication1
         private TextBox paraName_tb;
         private TextBox paraValue_tb;
         private ComboBox paraType_cb;
+        private ComboBox paraDataType_cb;
 
-        public Para(TextBox paraName_tb, TextBox paraValue_tb, ComboBox paraType_cb)
+        public Para(TextBox paraName_tb, TextBox paraValue_tb, ComboBox paraType_cb, ComboBox paraDataType_cb)
         {
             this.paraName_tb = paraName_tb;
             this.paraValue_tb = paraValue_tb;
             this.paraType_cb = paraType_cb;
+            this.paraDataType_cb = paraDataType_cb;
         }
 
         public string getParaName()
@@ -62,6 +64,16 @@ namespace WindowsFormsApplication1
         public void setParaType(ComboBox paraType_cb)
         {
             this.paraType_cb = paraType_cb;
+        }
+        
+        public ComboBox getParaDataTypeComboBox()
+        {
+            return paraDataType_cb;
+        }
+
+        public void setParaDataType(ComboBox paraDataType_cb)
+        {
+            this.paraDataType_cb = paraDataType_cb;
         }
     }
 }

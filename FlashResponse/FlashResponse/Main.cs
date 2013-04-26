@@ -35,10 +35,11 @@ namespace FlashResponse
 
         public void AutoTamperResponseBefore(Session oSession)
         {
+            if (this.oPage == null) return;
             if (oPage.getCheckBox1())
             {
                 atrbh = new AutoTamperRepBeforeHandler(oSession, oPage);
-                atrbh.updateResponseBody();
+                atrbh.updateResponseBody(oPage);
             }
         }
         public void AutoTamperResponseAfter(Session oSession) { }

@@ -37,6 +37,12 @@
             this.url_tb = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.preview_response = new System.Windows.Forms.TextBox();
+            this.sign_label = new System.Windows.Forms.Label();
+            this.signValue_text = new System.Windows.Forms.TextBox();
+            this.json_label = new System.Windows.Forms.Label();
+            this.requestType_cb = new System.Windows.Forms.ComboBox();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -50,18 +56,22 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.preview_response);
+            this.Controls.Add(this.sign_label);
+            this.Controls.Add(this.signValue_text);
+            this.Controls.Add(this.json_label);
             this.Location = new System.Drawing.Point(4, 22);
             this.Name = "FlashResponse";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(421, 522);
             this.TabIndex = 0;
-            this.Text = "tabPage1";
+            this.Text = "FlashResponse";
             this.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.response_ta);
-            this.groupBox4.Location = new System.Drawing.Point(7, 375);
+            this.groupBox4.Location = new System.Drawing.Point(7, 400);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(383, 100);
             this.groupBox4.TabIndex = 3;
@@ -75,18 +85,33 @@
             this.response_ta.Name = "response_ta";
             this.response_ta.Size = new System.Drawing.Size(370, 74);
             this.response_ta.TabIndex = 0;
+            this.response_ta.KeyUp += new System.Windows.Forms.KeyEventHandler(this.response_ta_Keyup);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.minus_Button);
             this.groupBox3.Controls.Add(this.add_Button);
-            this.groupBox3.Location = new System.Drawing.Point(7, 231);
+            this.groupBox3.Location = new System.Drawing.Point(7, 250);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(383, 82);
+            this.groupBox3.Size = new System.Drawing.Size(500, 82);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "groupBox3";
-
+            // 
+            // sign_label
+            // 
+            this.sign_label.Location = new System.Drawing.Point(7, 350);
+            this.sign_label.Name = "sign";
+            this.sign_label.Size = new System.Drawing.Size(50, 21);
+            this.sign_label.Text = "sign";
+			this.sign_label.ForeColor = System.Drawing.Color.Blue;
+			// 
+            // signValue_text
+            // 
+            this.signValue_text.Location = new System.Drawing.Point(60, 350);
+            this.signValue_text.Name = "signValue_text";
+            this.signValue_text.Multiline = true;
+            this.signValue_text.Size = new System.Drawing.Size(200, 40);   
             // 
             // minus_Button
             // 
@@ -111,25 +136,48 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.url_tb);
+            this.groupBox2.Controls.Add(this.requestType_cb);
             this.groupBox2.Location = new System.Drawing.Point(8, 102);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(382, 79);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "请求地址";
-
+            // 
+            // json_label
+            // 
+            this.json_label.Location = new System.Drawing.Point(8, 190);
+            this.json_label.Name = "json_label";
+            this.json_label.Size = new System.Drawing.Size(70, 21);
+            this.json_label.Text = "json返回值";
+			this.json_label.ForeColor = System.Drawing.Color.Blue;
             // 
             // url_tb
             // 
             this.url_tb.Location = new System.Drawing.Point(6, 34);
             this.url_tb.Name = "url_tb";
-            this.url_tb.Size = new System.Drawing.Size(100, 21);
+            this.url_tb.Size = new System.Drawing.Size(200, 21);
             this.url_tb.TabIndex = 0;
             this.url_tb.Text = "默认的";
+            this.url_tb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.url_tb_KeyUp);
+            // 
+            // requestType_cb
+            // 
+            requestType_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            requestType_cb.FormattingEnabled = true;
+            requestType_cb.Items.AddRange(new object[] {
+            "GET",
+            "POST"});
+            requestType_cb.SelectedIndex = 0;
+            requestType_cb.SelectedValueChanged += new System.EventHandler(this.requestType_cb_SelectedIndexChanged);
+            requestType_cb.Location = new System.Drawing.Point(256, 34);
+            requestType_cb.Name = "requestType_cb";
+            requestType_cb.Size = new System.Drawing.Size(86, 21);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Location = new System.Drawing.Point(7, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(383, 67);
@@ -147,6 +195,24 @@
             this.checkBox1.Text = "启用";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            //
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(80, 30);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(48, 16);
+            this.checkBox2.TabIndex = 0;
+            this.checkBox2.Text = "字符串转换";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            
+            //preiview_response
+            
+            this.preview_response.Location = new System.Drawing.Point(80, 190);
+            this.preview_response.Multiline = true;
+            this.preview_response.Name = "preview_response";
+            this.preview_response.Size = new System.Drawing.Size(310, 50);
+            //this.preview_response.TextChanged += new System.EventHandler(this.response_tb_TextChanged);
             // 
             // Form1
             // 
@@ -172,5 +238,11 @@
         private System.Windows.Forms.TextBox url_tb;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.TextBox preview_response;
+        private System.Windows.Forms.Label sign_label;
+        private System.Windows.Forms.Label json_label;
+        private System.Windows.Forms.TextBox signValue_text;
+        private System.Windows.Forms.ComboBox requestType_cb;
     }
 }
