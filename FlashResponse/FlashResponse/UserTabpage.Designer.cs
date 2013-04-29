@@ -39,10 +39,12 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.preview_response = new System.Windows.Forms.TextBox();
-            this.sign_label = new System.Windows.Forms.Label();
+            this.sign_groupbox = new System.Windows.Forms.GroupBox();
             this.signValue_text = new System.Windows.Forms.TextBox();
-            this.json_label = new System.Windows.Forms.Label();
+            this.json_groupbox = new System.Windows.Forms.GroupBox();
             this.requestType_cb = new System.Windows.Forms.ComboBox();
+            this.sign_groupbox.SuspendLayout();
+            this.json_groupbox.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -57,9 +59,9 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.preview_response);
-            this.Controls.Add(this.sign_label);
+            this.Controls.Add(this.sign_groupbox);
             this.Controls.Add(this.signValue_text);
-            this.Controls.Add(this.json_label);
+            this.Controls.Add(this.json_groupbox);
             this.Location = new System.Drawing.Point(4, 22);
             this.Name = "FlashResponse";
             this.Padding = new System.Windows.Forms.Padding(3);
@@ -71,7 +73,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.response_ta);
-            this.groupBox4.Location = new System.Drawing.Point(7, 400);
+            this.groupBox4.Location = new System.Drawing.Point(7, 570);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(383, 100);
             this.groupBox4.TabIndex = 3;
@@ -91,20 +93,21 @@
             // 
             this.groupBox3.Controls.Add(this.minus_Button);
             this.groupBox3.Controls.Add(this.add_Button);
-            this.groupBox3.Location = new System.Drawing.Point(7, 250);
+            this.groupBox3.Location = new System.Drawing.Point(7, 370);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(500, 82);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "groupBox3";
             // 
-            // sign_label
+            // sign_groupbox
             // 
-            this.sign_label.Location = new System.Drawing.Point(7, 350);
-            this.sign_label.Name = "sign";
-            this.sign_label.Size = new System.Drawing.Size(50, 21);
-            this.sign_label.Text = "sign";
-			this.sign_label.ForeColor = System.Drawing.Color.Blue;
+            this.sign_groupbox.Controls.Add(this.signValue_text);
+            this.sign_groupbox.Location = new System.Drawing.Point(7, 470);
+            this.sign_groupbox.Name = "sign";
+            this.sign_groupbox.Size = new System.Drawing.Size(382, 90);
+            this.sign_groupbox.Text = "sign";
+            this.sign_groupbox.ForeColor = System.Drawing.Color.Blue;
 			// 
             // signValue_text
             // 
@@ -139,18 +142,19 @@
             this.groupBox2.Controls.Add(this.requestType_cb);
             this.groupBox2.Location = new System.Drawing.Point(8, 102);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(382, 79);
+            this.groupBox2.Size = new System.Drawing.Size(382, 120);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "请求地址";
             // 
-            // json_label
+            // json_groupbox
             // 
-            this.json_label.Location = new System.Drawing.Point(8, 190);
-            this.json_label.Name = "json_label";
-            this.json_label.Size = new System.Drawing.Size(70, 21);
-            this.json_label.Text = "json返回值";
-			this.json_label.ForeColor = System.Drawing.Color.Blue;
+            this.json_groupbox.Location = new System.Drawing.Point(8, 250);
+            this.json_groupbox.Controls.Add(this.preview_response);
+            this.json_groupbox.Name = "json_label";
+            this.json_groupbox.Size = new System.Drawing.Size(382, 100);
+            this.json_groupbox.Text = "json返回值";
+            this.json_groupbox.ForeColor = System.Drawing.Color.Black;
             // 
             // url_tb
             // 
@@ -208,14 +212,18 @@
             
             //preiview_response
             
-            this.preview_response.Location = new System.Drawing.Point(80, 190);
+            this.preview_response.Location = new System.Drawing.Point(6, 30);
             this.preview_response.Multiline = true;
             this.preview_response.Name = "preview_response";
             this.preview_response.Size = new System.Drawing.Size(310, 50);
             //this.preview_response.TextChanged += new System.EventHandler(this.response_tb_TextChanged);
             // 
             // Form1
-            // 
+            //
+            this.json_groupbox.ResumeLayout(false);
+            this.json_groupbox.PerformLayout();
+            this.sign_groupbox.ResumeLayout(false);
+            this.sign_groupbox.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -240,8 +248,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.TextBox preview_response;
-        private System.Windows.Forms.Label sign_label;
-        private System.Windows.Forms.Label json_label;
+        private System.Windows.Forms.GroupBox sign_groupbox;
+        private System.Windows.Forms.GroupBox json_groupbox;
         private System.Windows.Forms.TextBox signValue_text;
         private System.Windows.Forms.ComboBox requestType_cb;
     }

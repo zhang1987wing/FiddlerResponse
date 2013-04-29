@@ -22,6 +22,7 @@ namespace FlashResponse
         private ComboBox paraType_tb;
         private ComboBox paraDataType_cb;
         private ToolTip toolTip1;
+        private TextBox requestbody_tb;
         String jsonText = "";
         StringWriter sw;
         JsonTextWriter writer;
@@ -33,8 +34,8 @@ namespace FlashResponse
             this.groupBox2.Enabled = false;
             this.groupBox3.Enabled = false;
             this.groupBox4.Enabled = false;
-            this.signValue_text.Enabled = false;
-            this.preview_response.Enabled = false;
+            this.sign_groupbox.Enabled = false;
+            this.json_groupbox.Enabled = false;
             
             toolTip1 = new ToolTip();
  
@@ -85,16 +86,16 @@ namespace FlashResponse
                 this.groupBox2.Enabled = true;
                 this.groupBox3.Enabled = true;
                 this.groupBox4.Enabled = true;
-                this.preview_response.Enabled = true;
-                this.signValue_text.Enabled = true;
+                this.sign_groupbox.Enabled = true;
+                this.json_groupbox.Enabled = true;
             }
             else
             {
                 this.groupBox2.Enabled = false;
                 this.groupBox3.Enabled = false;
                 this.groupBox4.Enabled = false;
-                this.preview_response.Enabled = false;
-                this.signValue_text.Enabled = false;
+                this.sign_groupbox.Enabled = false;
+                this.json_groupbox.Enabled = false;
             }
         }
 
@@ -174,8 +175,7 @@ namespace FlashResponse
             }
 
             this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y + 10 + 21);
-			this.sign_label.Location = new Point(this.sign_label.Location.X, this.sign_label.Location.Y + 10 + 21);
-            this.signValue_text.Location = new Point(this.signValue_text.Location.X, this.signValue_text.Location.Y + 10 + 21);
+            this.sign_groupbox.Location = new Point(this.sign_groupbox.Location.X, this.sign_groupbox.Location.Y + 10 + 21);
             
             this.AutoScroll = true;
             this.AutoScrollPosition = new Point(0, 60 + 21);
@@ -204,8 +204,7 @@ namespace FlashResponse
                 }
 
                 this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y - 10 - 21);
-				this.sign_label.Location = new Point(this.sign_label.Location.X, this.sign_label.Location.Y - 10 - 21);
-                this.signValue_text.Location = new Point(this.signValue_text.Location.X, this.signValue_text.Location.Y - 10 - 21);
+                this.sign_groupbox.Location = new Point(this.sign_groupbox.Location.X, this.sign_groupbox.Location.Y - 10 - 21);
                 
                 this.AutoScroll = true;
                 this.AutoScrollPosition = new Point(0, 60 + 21);
@@ -226,18 +225,20 @@ namespace FlashResponse
         
         private void requestType_cb_SelectedIndexChanged(object sender, EventArgs e)
         {
-        	if(this.toolTip1 != null)
-        	{
-        		this.toolTip1.Dispose();
-        	}
-        	
-        	toolTip1.AutoPopDelay = 3000;
-			toolTip1.InitialDelay = 1;
-			toolTip1.ReshowDelay = 500;
-			// Force the ToolTip text to be displayed whether or not the form is active.
-			toolTip1.ShowAlways = true;
-			    
-			toolTip1.SetToolTip(this.groupBox2, "你选择的是" + this.requestType_cb.Text + "方式");
+            this.createTooltip(this.toolTip1);
+
+            if (this.requestType_cb.Text == "GET")
+            {
+                groupBox2.Controls.Remove(this.requestType_cb);
+            }
+            else if (this.requestType_cb.Text == "POST")
+            {
+                requestbody_tb.Location = new System.Drawing.Point(7, 80);
+                requestbody_tb.Name = "paraName_tb" + f;
+                requestbody_tb.Size = new System.Drawing.Size(200, 21);
+
+                groupBox2.Controls.Add(this.requestType_cb);
+            }
         }
         
         /*更新json原始值方法，使用newtonsoft.json第三方控件编写json格式*/
@@ -278,6 +279,32 @@ namespace FlashResponse
         	}
         	
         }
+
+        public void updatepPreview_response1()
+        {
+            if (paraName_list.Count != 0)
+            {
+                string[] requestPar = this.preview_response.Text.Split(new char[5] { ',', '{', '}', '[', ']' });
+
+                foreach (Para para in paraName_list)
+                {
+                    for (int i = 0; i < requestPar.Length; i++)
+                    {
+                        string ii = requestPar[i];
+
+                        if (ii.Contains(para.getParaName()))
+                        {
+                            //ii.Split(new char[1] { '"' })[2] = "117";
+                            ii = ii.Replace(ii.Split(new char[1] { '"' })[3], para.getParaValue());
+                            this.preview_response.Text = this.preview_response.Text.Replace(requestPar[i], ii);
+
+                            break;
+                        }
+                    }
+                }
+            }
+           this.preview_response.Text = this.preview_response.Text;
+        }
         
         public TextBox getPreviewTextbox()
         {
@@ -287,6 +314,27 @@ namespace FlashResponse
         public TextBox getSignValue_text()
         {
         	return this.signValue_text;
+        }
+
+        public void createTooltip(ToolTip toolTip)
+        {
+            if (toolTip != null)
+            {
+                toolTip.Dispose();
+            }
+
+            toolTip.AutoPopDelay = 3000;
+            toolTip.InitialDelay = 1;
+            toolTip.ReshowDelay = 500;
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            toolTip.ShowAlways = true;
+
+            toolTip.SetToolTip(this.groupBox2, "你选择的是" + this.requestType_cb.Text + "方式");
+        }
+
+        public TextBox getRequestbody_tb()
+        {
+            return this.requestbody_tb;
         }
     }
 }

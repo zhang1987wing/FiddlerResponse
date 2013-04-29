@@ -104,8 +104,7 @@ namespace WindowsFormsApplication1
             }
 
             this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y + 10 + 21);
-            this.sign_label.Location = new Point(this.sign_label.Location.X, this.sign_label.Location.Y + 10 + 21);
-            this.signValue_text.Location = new Point(this.signValue_text.Location.X, this.signValue_text.Location.Y + 10 + 21);
+            this.sign_groupbox.Location = new Point(this.sign_groupbox.Location.X, this.sign_groupbox.Location.Y + 10 + 21);
             this.tabPage1.AutoScroll = true;
             this.tabPage1.AutoScrollPosition = new Point(0, 60 + 21);
         }
@@ -133,8 +132,7 @@ namespace WindowsFormsApplication1
                 }
 
                 this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y - 10 - 21);
-                this.sign_label.Location = new Point(this.sign_label.Location.X, this.sign_label.Location.Y - 10 - 21);
-                this.signValue_text.Location = new Point(this.signValue_text.Location.X, this.signValue_text.Location.Y - 10 - 21);
+                this.sign_groupbox.Location = new Point(this.sign_groupbox.Location.X, this.sign_groupbox.Location.Y - 10 - 21);
                 
 
                 this.tabPage1.AutoScroll = true;

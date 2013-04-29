@@ -24,17 +24,24 @@ namespace FlashResponse
         /*更新返回值和json预览*/
         public void updateResponseBody(UserTabpage oPage)
         {
-            if (this.oSession.uriContains(this.oPage.getUrlTextBoxValue()))
+            if (this.oSession.HTTPMethodIs("POST") && oPage.getRequestType_cb().Text == "POST" && this.oSession.uriContains(this.oPage.getUrlTextBoxValue()) && this.oSession.GetRequestBodyAsString().Contains(oPage.getRequestbody_tb().Text))
             {
-            	oPage.updatepPreview_response();
+            	oPage.updatepPreview_response1();
                 oSession.utilSetResponseBody(setResponseBody(oPage.getResponseTextBoxValue().Text, oPage.getPara_list(), oSession, oPage));
-            } 
+            }
+            else if (this.oSession.HTTPMethodIs("GET") && oPage.getRequestbody_tb().Text == "GET")
+            {
+                oSession.utilSetResponseBody(setResponseBody(oPage.getResponseTextBoxValue().Text, oPage.getPara_list(), oSession, oPage));
+            }
         }
 
         /*设置返回值*/
         public string setResponseBody(string response_ta_value, List<Para> paraValue_list, Session oSession, UserTabpage oPage)
         {
         	string[] requestPar = null;
+
+            oSession["ui-color"] = "brown";
+            oSession["ui-bold"] = "true";
         	
         	if (oPage.getRequestType_cb().Text == "GET")
         	{
@@ -43,7 +50,7 @@ namespace FlashResponse
         	}
         	else if(oPage.getRequestType_cb().Text == "POST")
         	{
-        		string url = oSession.GetResponseBodyAsString();
+        		string url = oSession.GetRequestBodyAsString();
             	requestPar = url.Split(new char[1] { '&' });
         	}
 
@@ -111,7 +118,7 @@ namespace FlashResponse
             
             if(oPage.getCheckBox2().Checked)
             {
-            	oPage.getResponseTextBoxValue().Text += "|" + this.jsonTOurlencode(oPage.getPreviewTextbox().Text);
+                oPage.getResponseTextBoxValue().Text += "|" + oPage.getPreviewTextbox().Text; 
             }
 
             return response_ta_value;
@@ -161,8 +168,6 @@ namespace FlashResponse
         /*JSON转urlencode*/
         private string jsonTOurlencode(String jsonText)
         {
-        	
-        	//response_ta.Text = System.Web.HttpUtility.UrlEncode(jsonText, System.Text.Encoding.UTF8);
         	return AutoTamperRepBeforeHandler.UrlEncode2(jsonText, Encoding.UTF8);
         }
         
