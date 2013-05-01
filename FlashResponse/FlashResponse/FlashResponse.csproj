@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="AutoTamperRepBeforeHandler.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="OperateXML.cs" />
     <Compile Include="Para.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserTabpage.cs">

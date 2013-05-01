@@ -37,21 +37,24 @@
             this.add_Button = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.url_tb = new System.Windows.Forms.TextBox();
+            this.requestType_cb = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.preview_response = new System.Windows.Forms.TextBox();
             this.sign_groupbox = new System.Windows.Forms.GroupBox();
             this.signValue_text = new System.Windows.Forms.TextBox();
             this.json_groupbox = new System.Windows.Forms.GroupBox();
-            this.requestType_cb = new System.Windows.Forms.ComboBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.save_btn = new System.Windows.Forms.Button();
+            this.load_btn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.json_groupbox.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -66,11 +69,11 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AutoScroll = true;
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.preview_response);
             this.tabPage1.Controls.Add(this.sign_groupbox);
             this.tabPage1.Controls.Add(this.signValue_text);
             this.tabPage1.Controls.Add(this.json_groupbox);
@@ -81,7 +84,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.AutoScroll = true;
             // 
             // groupBox4
             // 
@@ -103,9 +105,6 @@
             // 
             // groupBox3
             // 
-            //this.groupBox3.Controls.Add(this.paraType_tb1);
-           // this.groupBox3.Controls.Add(this.paraValue_tb1);
-            //this.groupBox3.Controls.Add(this.paraName_tb1);
             this.groupBox3.Controls.Add(this.minus_Button);
             this.groupBox3.Controls.Add(this.add_Button);
             this.groupBox3.Location = new System.Drawing.Point(7, 370);
@@ -114,22 +113,6 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "groupBox3";
-            // 
-            // sign_groupbox
-            // 
-            this.sign_groupbox.Location = new System.Drawing.Point(7, 470);
-            this.sign_groupbox.Controls.Add(this.signValue_text);
-            this.sign_groupbox.Name = "sign";
-            this.sign_groupbox.Size = new System.Drawing.Size(382, 90);
-            this.sign_groupbox.Text = "sign";
-            this.sign_groupbox.ForeColor = System.Drawing.Color.Blue;            
-            // 
-            // signValue_text
-            // 
-            this.signValue_text.Location = new System.Drawing.Point(6, 30);
-            this.signValue_text.Name = "signValue_text";
-            this.signValue_text.Multiline = true;
-            this.signValue_text.Size = new System.Drawing.Size(200, 40);        
             // 
             // minus_Button
             // 
@@ -162,15 +145,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "请求地址和方式";
             // 
-            // json_groupbox
-            // 
-            this.json_groupbox.Location = new System.Drawing.Point(8, 250);
-            this.json_groupbox.Controls.Add(this.preview_response);
-            this.json_groupbox.Name = "json_label";
-            this.json_groupbox.Size = new System.Drawing.Size(382, 100);
-            this.json_groupbox.Text = "json返回值";
-            this.json_groupbox.ForeColor = System.Drawing.Color.Blue;
-            // 
             // url_tb
             // 
             this.url_tb.Location = new System.Drawing.Point(6, 34);
@@ -180,19 +154,21 @@
             // 
             // requestType_cb
             // 
-            requestType_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            requestType_cb.FormattingEnabled = true;
-            requestType_cb.Items.AddRange(new object[] {
+            this.requestType_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.requestType_cb.FormattingEnabled = true;
+            this.requestType_cb.Items.AddRange(new object[] {
             "GET",
             "POST"});
-            requestType_cb.SelectedIndex = 0;
-            requestType_cb.SelectedValueChanged += new System.EventHandler(this.requestType_cb_SelectedIndexChanged);
-            requestType_cb.Location = new System.Drawing.Point(150, 34);
-            requestType_cb.Name = "requestType_cb";
-            requestType_cb.Size = new System.Drawing.Size(86, 21);
+            this.requestType_cb.Location = new System.Drawing.Point(150, 34);
+            this.requestType_cb.Name = "requestType_cb";
+            this.requestType_cb.Size = new System.Drawing.Size(86, 20);
+            this.requestType_cb.TabIndex = 1;
+            this.requestType_cb.SelectedValueChanged += new System.EventHandler(this.requestType_cb_SelectedIndexChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.load_btn);
+            this.groupBox1.Controls.Add(this.save_btn);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Location = new System.Drawing.Point(7, 7);
@@ -212,26 +188,54 @@
             this.checkBox1.Text = "启用";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            //
+            // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(80, 30);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(48, 16);
+            this.checkBox2.Size = new System.Drawing.Size(84, 16);
             this.checkBox2.TabIndex = 0;
             this.checkBox2.Text = "字符串转换";
             this.checkBox2.UseVisualStyleBackColor = true;
-           
-            
-            //preiview_response
-            
+            // 
+            // preview_response
+            // 
             this.preview_response.Location = new System.Drawing.Point(6, 30);
             this.preview_response.Multiline = true;
             this.preview_response.Name = "preview_response";
             this.preview_response.Size = new System.Drawing.Size(310, 50);
+            this.preview_response.TabIndex = 4;
             this.preview_response.TextChanged += new System.EventHandler(this.response_tb_TextChanged);
-            
+            // 
+            // sign_groupbox
+            // 
+            this.sign_groupbox.ForeColor = System.Drawing.Color.Blue;
+            this.sign_groupbox.Location = new System.Drawing.Point(7, 470);
+            this.sign_groupbox.Name = "sign_groupbox";
+            this.sign_groupbox.Size = new System.Drawing.Size(382, 90);
+            this.sign_groupbox.TabIndex = 5;
+            this.sign_groupbox.TabStop = false;
+            this.sign_groupbox.Text = "sign";
+            // 
+            // signValue_text
+            // 
+            this.signValue_text.Location = new System.Drawing.Point(6, 30);
+            this.signValue_text.Multiline = true;
+            this.signValue_text.Name = "signValue_text";
+            this.signValue_text.Size = new System.Drawing.Size(200, 40);
+            this.signValue_text.TabIndex = 0;
+            // 
+            // json_groupbox
+            // 
+            this.json_groupbox.Controls.Add(this.preview_response);
+            this.json_groupbox.ForeColor = System.Drawing.Color.Blue;
+            this.json_groupbox.Location = new System.Drawing.Point(8, 250);
+            this.json_groupbox.Name = "json_groupbox";
+            this.json_groupbox.Size = new System.Drawing.Size(382, 100);
+            this.json_groupbox.TabIndex = 6;
+            this.json_groupbox.TabStop = false;
+            this.json_groupbox.Text = "json返回值";
             // 
             // tabPage2
             // 
@@ -243,6 +247,26 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // save_btn
+            // 
+            this.save_btn.Location = new System.Drawing.Point(181, 23);
+            this.save_btn.Name = "save_btn";
+            this.save_btn.Size = new System.Drawing.Size(75, 23);
+            this.save_btn.TabIndex = 1;
+            this.save_btn.Text = "保存";
+            this.save_btn.UseVisualStyleBackColor = true;
+            this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
+            // 
+            // load_btn
+            // 
+            this.load_btn.Location = new System.Drawing.Point(282, 22);
+            this.load_btn.Name = "load_btn";
+            this.load_btn.Size = new System.Drawing.Size(75, 23);
+            this.load_btn.TabIndex = 2;
+            this.load_btn.Text = "读取";
+            this.load_btn.UseVisualStyleBackColor = true;
+            this.load_btn.Click += new System.EventHandler(this.load_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -253,14 +277,16 @@
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.json_groupbox.ResumeLayout(false);
+            this.json_groupbox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -285,5 +311,7 @@
         private System.Windows.Forms.GroupBox json_groupbox;
         private System.Windows.Forms.TextBox signValue_text;
         private System.Windows.Forms.ComboBox requestType_cb;
+        private System.Windows.Forms.Button load_btn;
+        private System.Windows.Forms.Button save_btn;
     }
 }

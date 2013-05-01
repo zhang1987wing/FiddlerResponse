@@ -8,6 +8,7 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using System.Xml;
 
 namespace WindowsFormsApplication1
 {
@@ -231,6 +232,26 @@ namespace WindowsFormsApplication1
 			toolTip1.ShowAlways = true;
 			    
 			toolTip1.SetToolTip(this.groupBox2, "你选择的是" + this.requestType_cb.Text + "方式");
+        }
+
+        private void save_btn_Click(object sender, EventArgs e)
+        {
+            string myXMLFilePath = "I:\\a.xml";
+            XmlDocument myXmlDoc = new XmlDocument();
+
+            OperateXML operateXML = new OperateXML(myXMLFilePath, myXmlDoc);
+            operateXML.GenerateXMLFile();
+        }
+
+        private void load_btn_Click(object sender, EventArgs e)
+        {
+            string aa = "";
+            string myXMLFilePath = "I:\\a.xml";
+            XmlDocument myXmlDoc = new XmlDocument();
+            OperateXML operateXML = new OperateXML(myXMLFilePath, myXmlDoc);
+            aa = operateXML.loadXmlFile();
+
+            MessageBox.Show(aa);
         }
     }
 }

@@ -43,6 +43,8 @@
             this.signValue_text = new System.Windows.Forms.TextBox();
             this.json_groupbox = new System.Windows.Forms.GroupBox();
             this.requestType_cb = new System.Windows.Forms.ComboBox();
+            this.save_btn = new System.Windows.Forms.Button();
+            this.load_btn = new System.Windows.Forms.Button();
             this.sign_groupbox.SuspendLayout();
             this.json_groupbox.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -65,10 +67,11 @@
             this.Location = new System.Drawing.Point(4, 22);
             this.Name = "FlashResponse";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(421, 522);
+            this.Size = new System.Drawing.Size(421, 600);
             this.TabIndex = 0;
             this.Text = "FlashResponse";
             this.UseVisualStyleBackColor = true;
+            this.AutoScroll = true;
             // 
             // groupBox4
             // 
@@ -111,7 +114,7 @@
 			// 
             // signValue_text
             // 
-            this.signValue_text.Location = new System.Drawing.Point(60, 350);
+            this.signValue_text.Location = new System.Drawing.Point(7, 30);
             this.signValue_text.Name = "signValue_text";
             this.signValue_text.Multiline = true;
             this.signValue_text.Size = new System.Drawing.Size(200, 40);   
@@ -182,12 +185,34 @@
             // 
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.load_btn);
+            this.groupBox1.Controls.Add(this.save_btn);
             this.groupBox1.Location = new System.Drawing.Point(7, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(383, 67);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // save_btn
+            // 
+            this.save_btn.Location = new System.Drawing.Point(181, 23);
+            this.save_btn.Name = "save_btn";
+            this.save_btn.Size = new System.Drawing.Size(75, 23);
+            this.save_btn.TabIndex = 1;
+            this.save_btn.Text = "保存";
+            this.save_btn.UseVisualStyleBackColor = true;
+            this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
+            // 
+            // load_btn
+            // 
+            this.load_btn.Location = new System.Drawing.Point(282, 22);
+            this.load_btn.Name = "load_btn";
+            this.load_btn.Size = new System.Drawing.Size(75, 23);
+            this.load_btn.TabIndex = 2;
+            this.load_btn.Text = "读取";
+            this.load_btn.UseVisualStyleBackColor = true;
+            this.load_btn.Click += new System.EventHandler(this.load_btn_Click);
             // 
             // checkBox1
             // 
@@ -252,5 +277,7 @@
         private System.Windows.Forms.GroupBox json_groupbox;
         private System.Windows.Forms.TextBox signValue_text;
         private System.Windows.Forms.ComboBox requestType_cb;
+        private System.Windows.Forms.Button load_btn;
+        private System.Windows.Forms.Button save_btn;
     }
 }

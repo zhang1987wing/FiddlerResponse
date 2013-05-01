@@ -11,5 +11,9 @@ E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.pd
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Newtonsoft.Json.dll
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Newtonsoft.Json.pdb
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Newtonsoft.Json.xml
-H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.csprojResolveAssemblyReference.cache
 H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.dll
+H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\FlashResponse.dll
+H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\FlashResponse.pdb
+H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Newtonsoft.Json.dll
+H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.pdb
+H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.csprojResolveAssemblyReference.cache

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Fiddler;
 using Newtonsoft.Json;
 using System.IO;
+using System.Xml;
 
 namespace FlashResponse
 {
@@ -57,6 +58,11 @@ namespace FlashResponse
         public string getUrlTextBoxValue()
         {
             return this.url_tb.Text;
+        }
+
+        public TextBox getUrlTextBox()
+        {
+            return this.url_tb;
         }
 
         public List<Para> getPara_list()
@@ -132,7 +138,7 @@ namespace FlashResponse
             f += 1;
         }
 
-        private void draw_Para_Component(TextBox paraName_tb, TextBox paraValue_tb, ComboBox paraType_tb, ComboBox paraDataType_cb, int f)
+        public void draw_Para_Component(TextBox paraName_tb, TextBox paraValue_tb, ComboBox paraType_tb, ComboBox paraDataType_cb, int f)
         {
             paraName_tb.Location = new System.Drawing.Point(7, 10 * (f + 1) + 21 * (f + 1));
             paraName_tb.Name = "paraName_tb" + f;
@@ -220,12 +226,14 @@ namespace FlashResponse
         /*更新json原始值*/
         private void paraType_tb_SelectedIndexChanged(object sender, EventArgs e)
         {
-        	this.updatepPreview_response();
+        	this.updatepPreview_response1();
         }
         
         private void requestType_cb_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.createTooltip(this.toolTip1);
+
+            requestbody_tb = new TextBox();
 
             if (this.requestType_cb.Text == "GET")
             {
@@ -237,8 +245,34 @@ namespace FlashResponse
                 requestbody_tb.Name = "paraName_tb" + f;
                 requestbody_tb.Size = new System.Drawing.Size(200, 21);
 
-                groupBox2.Controls.Add(this.requestType_cb);
+                groupBox2.Controls.Add(this.requestbody_tb);
             }
+        }
+
+        public void add_requestbody_tb(string requestbody_tb_text)
+        {
+            this.createTooltip(this.toolTip1);
+
+            requestbody_tb = new TextBox();
+
+            if (this.requestType_cb.Text == "GET")
+            {
+                groupBox2.Controls.Remove(this.requestbody_tb);
+            }
+            else if (this.requestType_cb.Text == "POST")
+            {
+                requestbody_tb.Location = new System.Drawing.Point(7, 80);
+                requestbody_tb.Name = "requestbody_tb";
+                requestbody_tb.Size = new System.Drawing.Size(200, 21);
+                requestbody_tb.Text = requestbody_tb_text;
+
+                this.groupBox2.Controls.Add(this.requestbody_tb);
+            }
+        }
+
+        public void remove_requestbody_tb()
+        {
+            this.groupBox2.Controls.Remove(requestbody_tb);
         }
         
         /*更新json原始值方法，使用newtonsoft.json第三方控件编写json格式*/
@@ -282,23 +316,24 @@ namespace FlashResponse
 
         public void updatepPreview_response1()
         {
-            if (paraName_list.Count != 0)
+            if (paraName_list.Count != 0 && this.preview_response.Text != "")
             {
                 string[] requestPar = this.preview_response.Text.Split(new char[5] { ',', '{', '}', '[', ']' });
 
                 foreach (Para para in paraName_list)
                 {
-                    for (int i = 0; i < requestPar.Length; i++)
+                    if (para.getParaTypeComboBox().Text == "请求值")
                     {
-                        string ii = requestPar[i];
-
-                        if (ii.Contains(para.getParaName()))
+                        for (int i = 0; i < requestPar.Length; i++)
                         {
-                            //ii.Split(new char[1] { '"' })[2] = "117";
-                            ii = ii.Replace(ii.Split(new char[1] { '"' })[3], para.getParaValue());
-                            this.preview_response.Text = this.preview_response.Text.Replace(requestPar[i], ii);
+                            string ii = requestPar[i];
+                            if (ii.Contains(para.getParaName()))
+                            {
+                                ii = ii.Replace(ii.Split(new char[1] { '"' })[3], para.getParaValue());
+                                this.preview_response.Text = this.preview_response.Text.Replace(requestPar[i], ii);
 
-                            break;
+                                break;
+                            }
                         }
                     }
                 }
@@ -322,7 +357,7 @@ namespace FlashResponse
             {
                 toolTip.Dispose();
             }
-
+            toolTip = new ToolTip();
             toolTip.AutoPopDelay = 3000;
             toolTip.InitialDelay = 1;
             toolTip.ReshowDelay = 500;
@@ -335,6 +370,99 @@ namespace FlashResponse
         public TextBox getRequestbody_tb()
         {
             return this.requestbody_tb;
+        }
+
+        public TextBox getResponse_ta()
+        {
+            return this.response_ta;
+        }
+
+        private void save_btn_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog=new SaveFileDialog();
+            saveFileDialog.Filter = "xml files (*.xml)|*.xml*";　
+            saveFileDialog.FilterIndex=2;　
+            saveFileDialog.RestoreDirectory=true;
+            string fName = "";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fName = saveFileDialog.FileName;
+            }
+            else
+            {
+                return;
+            }
+            XmlDocument myXmlDoc = new XmlDocument();
+
+            OperateXML operateXML = new OperateXML(fName, myXmlDoc, this);
+            operateXML.GenerateXMLFile();
+        }
+
+        public void removeAllPara()
+        {
+            if (paraName_list.Count > 0)
+            {
+                for (int i = 0; i < paraName_list.Count; i++)
+                {
+                    this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaNameTextBox());
+                    this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaTypeComboBox());
+                    this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaValueTextBox());
+                    this.groupBox3.Controls.Remove(paraName_list[paraName_list.Count - 1].getParaDataTypeComboBox());
+
+                    paraName_list.RemoveAt(paraName_list.Count - 1);
+
+                    this.groupBox3.Size = new System.Drawing.Size(this.groupBox3.Size.Width, this.groupBox3.Size.Height - 10 - 21);
+
+                    foreach (Control btn in this.groupBox3.Controls)
+                    {
+                        if (btn is Button)
+                        {
+                            btn.Location = new Point(btn.Location.X, btn.Location.Y - 10 - 21);
+                        }
+                    }
+
+                    this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y - 10 - 21);
+                    this.sign_groupbox.Location = new Point(this.sign_groupbox.Location.X, this.sign_groupbox.Location.Y - 10 - 21);
+
+                    this.AutoScroll = true;
+                    this.AutoScrollPosition = new Point(0, 60 + 21);
+
+                    f -= 1;
+                }
+            }
+        }
+
+        private void load_btn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Title = "选择文件";
+            fileDialog.Filter = "xml files (*.xml)|*.xml";
+            fileDialog.FilterIndex = 1;
+            fileDialog.RestoreDirectory = true;
+            String fileName = "";
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fileName = fileDialog.FileName;
+
+            }
+            else
+            {
+                return;
+            } 
+
+            XmlDocument myXmlDoc = new XmlDocument();
+            OperateXML operateXML = new OperateXML(fileName, myXmlDoc, this);
+
+            paraName_tb = new TextBox();
+            paraValue_tb = new TextBox();
+            paraType_tb = new ComboBox();
+            paraDataType_cb = new ComboBox();
+
+            this.removeAllPara();
+
+            operateXML.loadXmlFile();
         }
     }
 }

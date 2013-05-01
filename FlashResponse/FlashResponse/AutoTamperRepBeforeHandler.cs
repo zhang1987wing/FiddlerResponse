@@ -24,13 +24,14 @@ namespace FlashResponse
         /*更新返回值和json预览*/
         public void updateResponseBody(UserTabpage oPage)
         {
-            if (this.oSession.HTTPMethodIs("POST") && oPage.getRequestType_cb().Text == "POST" && this.oSession.uriContains(this.oPage.getUrlTextBoxValue()) && this.oSession.GetRequestBodyAsString().Contains(oPage.getRequestbody_tb().Text))
+            if (this.oSession.HTTPMethodIs("POST") && oPage.getRequestType_cb().Text == "POST" && this.oSession.uriContains(oPage.getUrlTextBox().Text) && this.oSession.GetRequestBodyAsString().Contains(oPage.getRequestbody_tb().Text))
             {
             	oPage.updatepPreview_response1();
                 oSession.utilSetResponseBody(setResponseBody(oPage.getResponseTextBoxValue().Text, oPage.getPara_list(), oSession, oPage));
             }
-            else if (this.oSession.HTTPMethodIs("GET") && oPage.getRequestbody_tb().Text == "GET")
+            else if (this.oSession.HTTPMethodIs("GET") && oPage.getRequestType_cb().Text == "GET" && this.oSession.uriContains(oPage.getUrlTextBox().Text))
             {
+                oPage.updatepPreview_response1();
                 oSession.utilSetResponseBody(setResponseBody(oPage.getResponseTextBoxValue().Text, oPage.getPara_list(), oSession, oPage));
             }
         }
