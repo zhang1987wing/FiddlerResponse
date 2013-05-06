@@ -231,29 +231,9 @@ namespace FlashResponse
         
         private void requestType_cb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.createTooltip(this.toolTip1);
-
-            requestbody_tb = new TextBox();
-
-            if (this.requestType_cb.Text == "GET")
-            {
-                groupBox2.Controls.Remove(this.requestType_cb);
-            }
-            else if (this.requestType_cb.Text == "POST")
-            {
-                requestbody_tb.Location = new System.Drawing.Point(7, 80);
-                requestbody_tb.Name = "paraName_tb" + f;
-                requestbody_tb.Size = new System.Drawing.Size(200, 21);
-
-                groupBox2.Controls.Add(this.requestbody_tb);
-            }
-        }
-
-        public void add_requestbody_tb(string requestbody_tb_text)
-        {
-            this.createTooltip(this.toolTip1);
-
-            requestbody_tb = new TextBox();
+            //this.createTooltip(this.toolTip1);
+            if(this.requestbody_tb == null)
+            	this.requestbody_tb = new TextBox();
 
             if (this.requestType_cb.Text == "GET")
             {
@@ -261,18 +241,31 @@ namespace FlashResponse
             }
             else if (this.requestType_cb.Text == "POST")
             {
-                requestbody_tb.Location = new System.Drawing.Point(7, 80);
-                requestbody_tb.Name = "requestbody_tb";
-                requestbody_tb.Size = new System.Drawing.Size(200, 21);
-                requestbody_tb.Text = requestbody_tb_text;
+                this.requestbody_tb.Location = new System.Drawing.Point(7, 80);
+                this.requestbody_tb.Name = "requestbody_tb";
+                this.requestbody_tb.Size = new System.Drawing.Size(200, 21);
 
-                this.groupBox2.Controls.Add(this.requestbody_tb);
+                groupBox2.Controls.Add(this.requestbody_tb);
             }
+        }
+
+        public void add_requestbody_tb(string requestbody_tb_text)
+        {
+            //this.createTooltip(this.toolTip1);
+            if (this.requestbody_tb == null)
+				this.requestbody_tb = new TextBox();
+            
+            this.requestbody_tb.Location = new System.Drawing.Point(7, 80);
+            this.requestbody_tb.Name = "requestbody_tb";
+            this.requestbody_tb.Size = new System.Drawing.Size(200, 21);
+            this.requestbody_tb.Text = requestbody_tb_text;
+
+            this.groupBox2.Controls.Add(this.requestbody_tb);
         }
 
         public void remove_requestbody_tb()
         {
-            this.groupBox2.Controls.Remove(requestbody_tb);
+            this.groupBox2.Controls.Remove(this.requestbody_tb);
         }
         
         /*更新json原始值方法，使用newtonsoft.json第三方控件编写json格式*/
@@ -339,6 +332,8 @@ namespace FlashResponse
                 }
             }
            this.preview_response.Text = this.preview_response.Text;
+           
+           //return this.preview_response.Text;
         }
         
         public TextBox getPreviewTextbox()

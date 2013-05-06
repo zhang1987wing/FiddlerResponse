@@ -26,12 +26,12 @@ namespace FlashResponse
         {
             if (this.oSession.HTTPMethodIs("POST") && oPage.getRequestType_cb().Text == "POST" && this.oSession.uriContains(oPage.getUrlTextBox().Text) && this.oSession.GetRequestBodyAsString().Contains(oPage.getRequestbody_tb().Text))
             {
-            	oPage.updatepPreview_response1();
+            	//oPage.updatepPreview_response1();
                 oSession.utilSetResponseBody(setResponseBody(oPage.getResponseTextBoxValue().Text, oPage.getPara_list(), oSession, oPage));
             }
             else if (this.oSession.HTTPMethodIs("GET") && oPage.getRequestType_cb().Text == "GET" && this.oSession.uriContains(oPage.getUrlTextBox().Text))
             {
-                oPage.updatepPreview_response1();
+                //oPage.updatepPreview_response1();
                 oSession.utilSetResponseBody(setResponseBody(oPage.getResponseTextBoxValue().Text, oPage.getPara_list(), oSession, oPage));
             }
         }
@@ -42,7 +42,6 @@ namespace FlashResponse
         	string[] requestPar = null;
 
             oSession["ui-color"] = "brown";
-            oSession["ui-bold"] = "true";
         	
         	if (oPage.getRequestType_cb().Text == "GET")
         	{
@@ -68,6 +67,13 @@ namespace FlashResponse
                         }
                     }
                 }
+            }
+            
+            oPage.updatepPreview_response1();
+            
+            if(oPage.getCheckBox2().Checked)
+            {
+                oPage.getResponseTextBoxValue().Text += "|" + oPage.getPreviewTextbox().Text; 
             }
 
             /*将大括号中符合规定的值替换*/
@@ -117,11 +123,6 @@ namespace FlashResponse
             	}
             }
             
-            if(oPage.getCheckBox2().Checked)
-            {
-                oPage.getResponseTextBoxValue().Text += "|" + oPage.getPreviewTextbox().Text; 
-            }
-
             return response_ta_value;
         }
 

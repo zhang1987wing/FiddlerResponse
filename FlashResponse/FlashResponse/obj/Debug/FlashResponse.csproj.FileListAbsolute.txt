@@ -8,7 +8,6 @@ E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Xceed.Compressio
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\ResolveAssemblyReference.cache
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.dll
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.pdb
-E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Newtonsoft.Json.dll
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Newtonsoft.Json.pdb
 E:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\bin\Debug\Newtonsoft.Json.xml
 H:\GitHub\FiddlerResponse\FlashResponse\FlashResponse\obj\Debug\FlashResponse.dll
