@@ -54,7 +54,7 @@ namespace Inspector2Test
                 string content_type = "";
                 if (m_Headers != null)
                     content_type = m_Headers["Content-Type"];
-                testControl.TextDisplay(System.Text.Encoding.UTF8.GetString(value)); // TODO: Use correct encoding based on content header?
+                testControl.TextDisplay(value); // TODO: Use correct encoding based on content header?
                 m_bDirty = false;   // Note: Be sure to have an OnTextChanged handler for the textbox which sets m_bDirty to true!
             }
         }

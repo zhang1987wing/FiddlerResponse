@@ -1,6 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.3
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspector2Test", "Inspector2Test\Inspector2Test.csproj", "{2BBEEF37-2184-400D-872A-266EEA98752A}"
 EndProject
 Global
