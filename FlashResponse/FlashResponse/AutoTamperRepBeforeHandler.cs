@@ -195,7 +195,7 @@ namespace FlashResponse
                     sb.Append(@"%" + Convert.ToString(byStr[i], 16).ToUpper());
                 }
             }
-            return sb.ToString().Replace("%D%A", "%0A");
+            return sb.ToString().Replace("%D%A", "%0A").Replace("%5F", "_");
         }
     }
 }
