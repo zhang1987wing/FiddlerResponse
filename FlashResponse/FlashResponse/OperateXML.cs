@@ -55,7 +55,7 @@ namespace FlashResponse
                 {
                     XmlNode groupbox1_xn = xe.ChildNodes[0];
                     xe = (XmlElement)groupbox1_xn;
-                    this.oPage.getCheckBox2().Checked = Convert.ToBoolean(xe.GetAttribute("value"));
+                    this.oPage.getKeyTextBox().Text = xe.GetAttribute("value");
                 }
                 else if (xe.GetAttribute("id").ToString() == "2")
                 {
@@ -67,21 +67,21 @@ namespace FlashResponse
                     if (xe.GetAttribute("value") == "POST")
                     {
                         this.oPage.getRequestType_cb().SelectedIndex = 1;
-                    }
-                    else
-                    {
-                        this.oPage.getRequestType_cb().SelectedIndex = 0;
-                    }
-
-                    if (xe.GetAttribute("value") == "POST")
-                    {
-                        this.oPage.remove_requestbody_tb();
                         xe = (XmlElement)groupbox2_xl[2];
+                        this.oPage.getRequestCheckBox().Checked = Boolean.Parse(xe.GetAttribute("value"));
+                        xe = (XmlElement)groupbox2_xl[3];
+                        this.oPage.getResponseCheckBox().Checked = Boolean.Parse(xe.GetAttribute("value"));
+                        xe = (XmlElement)groupbox2_xl[4];
                         this.oPage.add_requestbody_tb(xe.GetAttribute("value"));
                     }
                     else
                     {
+                        this.oPage.getRequestType_cb().SelectedIndex = 0;
                         this.oPage.remove_requestbody_tb();
+                        xe = (XmlElement)groupbox2_xl[2];
+                        this.oPage.getRequestCheckBox().Checked = Boolean.Parse(xe.GetAttribute("value"));
+                        xe = (XmlElement)groupbox2_xl[3];
+                        this.oPage.getResponseCheckBox().Checked = Boolean.Parse(xe.GetAttribute("value"));
                     }
                 }
                 else if (xe.GetAttribute("id").ToString() == "json_groupbox")
@@ -108,10 +108,11 @@ namespace FlashResponse
 
                         para.getParaNameTextBox().Text = paraXml.Item(0).InnerText;
                         para.getParaValueTextBox().Text = paraXml.Item(1).InnerText;
-                        para.getParaTypeComboBox().Text = paraXml.Item(2).InnerText;
+                        
                         para.getParaDataTypeComboBox().Text = paraXml.Item(3).InnerText;
 
-                        this.oPage.draw_Para_Component(para.getParaNameTextBox(), para.getParaValueTextBox(), para.getParaTypeComboBox(), para.getParaDataTypeComboBox(), i);
+                        this.oPage.draw_Para_Component(para.getParaNameTextBox(), para.getParaValueTextBox(), para.getParaTypeComboBox(), para.getParaDataTypeComboBox(),  paraXml.Item(2).InnerText, i);
+                        Main.f++;
                         this.oPage.getPara_list().Add(para);
                         this.oPage.getPara_list().TrimExcess();
                     }
@@ -137,8 +138,8 @@ namespace FlashResponse
             groupbox1LevelElement.SetAttribute("id", "1");
             rootElement.AppendChild(groupbox1LevelElement);
 
-            XmlElement groupbox1_secondLevelElement_chebox2 = myXmlDoc.CreateElement("checkbox2");
-            groupbox1_secondLevelElement_chebox2.SetAttribute("value", this.oPage.getCheckBox2().Checked.ToString());
+            XmlElement groupbox1_secondLevelElement_chebox2 = myXmlDoc.CreateElement("key_textBox");
+            groupbox1_secondLevelElement_chebox2.SetAttribute("value", this.oPage.getKeyText());
 
             groupbox1LevelElement.AppendChild(groupbox1_secondLevelElement_chebox2);
         }
@@ -153,9 +154,15 @@ namespace FlashResponse
             groupbox2_secondLevelElement_url_tb.SetAttribute("value", this.oPage.getUrlTextBoxValue());
             XmlElement groupbox2_secondLevelElement_requestType_cb = myXmlDoc.CreateElement("requestType_cb");
             groupbox2_secondLevelElement_requestType_cb.SetAttribute("value", this.oPage.getRequestType_cb().Text);
+            XmlElement groupbox2_secondLevelElement_requestSwitch_cb = myXmlDoc.CreateElement("requestSwitch_cb");
+            groupbox2_secondLevelElement_requestSwitch_cb.SetAttribute("value", this.oPage.getRequestCheckBox().Checked.ToString());
+            XmlElement groupbox2_secondLevelElement_resposneSwitch_cb = myXmlDoc.CreateElement("resposneSwitch_cb");
+            groupbox2_secondLevelElement_resposneSwitch_cb.SetAttribute("value", this.oPage.getResponseCheckBox().Checked.ToString());
 
             groupbox2LevelElement.AppendChild(groupbox2_secondLevelElement_url_tb);
             groupbox2LevelElement.AppendChild(groupbox2_secondLevelElement_requestType_cb);
+            groupbox2LevelElement.AppendChild(groupbox2_secondLevelElement_requestSwitch_cb);
+            groupbox2LevelElement.AppendChild(groupbox2_secondLevelElement_resposneSwitch_cb);
 
             if (oPage.getRequestType_cb().Text == "POST")
             {

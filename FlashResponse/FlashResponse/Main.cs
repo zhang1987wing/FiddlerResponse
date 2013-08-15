@@ -11,7 +11,9 @@ namespace FlashResponse
     public class Main : IAutoTamper
     {
         private UserTabpage oPage;
+        private AutoTamperReqBeforeHandler request;
         private AutoTamperRepBeforeHandler atrbh;
+        public static int f = 0;
 
         public Main()
         {
@@ -30,17 +32,41 @@ namespace FlashResponse
         }
         public void OnBeforeUnload() { }
 
-        public void AutoTamperRequestBefore(Session oSession){}
+        public void AutoTamperRequestBefore(Session oSession)
+        {
+        	if (this.oPage == null) return;
+        	try
+        	{
+        		if (oPage.getCheckBox1() && oPage.getRequestCheckBox().Checked)
+            	{
+                	request = new AutoTamperReqBeforeHandler(oSession, oPage);
+                	request.updateRequest(oPage);
+            	}
+        	}catch(Exception e)
+        	{
+        		MessageBox.Show("程序错误～～");
+        		Email.sendMessage(e.ToString());
+        	}
+        	
+        }
         public void AutoTamperRequestAfter(Session oSession) { }
 
         public void AutoTamperResponseBefore(Session oSession)
         {
             if (this.oPage == null) return;
-            if (oPage.getCheckBox1())
+            try
             {
-                atrbh = new AutoTamperRepBeforeHandler(oSession, oPage);
-                atrbh.updateResponseBody(oPage);
+            	if (oPage.getCheckBox1() && oPage.getResponseCheckBox().Checked)
+            	{
+                	atrbh = new AutoTamperRepBeforeHandler(oSession, oPage);
+                	atrbh.updateResponseBody(oPage);
+            	}
+            }catch(Exception e)
+            {
+            	MessageBox.Show("程序错误～～");
+        		Email.sendMessage(e.ToString());
             }
+            
         }
         public void AutoTamperResponseAfter(Session oSession) { }
         public void OnBeforeReturningError(Session oSession) { }

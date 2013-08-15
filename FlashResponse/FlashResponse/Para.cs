@@ -19,6 +19,7 @@ namespace FlashResponse
             this.paraValue_tb = paraValue_tb;
             this.paraType_cb = paraType_cb;
             this.paraDataType_cb = paraDataType_cb;
+            this.paraType_cb.SelectedValueChanged += new EventHandler(this.paraType_tb_SelectedIndexChanged);
         }
 
         public string getParaName()
@@ -79,6 +80,19 @@ namespace FlashResponse
         public void setParaDataType(ComboBox paraDataType_cb)
         {
             this.paraDataType_cb = paraDataType_cb;
+        }
+        
+        private void paraType_tb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        	if (this.paraType_cb.Text == "读取")
+        	{
+        		this.paraValue_tb.ReadOnly = true;
+        	}else
+        	{
+        		this.paraValue_tb.ReadOnly = false;
+        	}
+        	
+        	//this.updatepPreview_response1();
         }
     }
 }

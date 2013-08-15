@@ -1,4 +1,7 @@
-﻿namespace FlashResponse
+﻿using System.Windows.Forms;
+using System.Drawing;
+
+namespace FlashResponse
 {
     partial class UserTabpage
     {
@@ -28,6 +31,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+        	this.request_switch = new System.Windows.Forms.CheckBox();
+        	this.response_switch = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.response_ta = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -45,6 +50,9 @@
             this.requestType_cb = new System.Windows.Forms.ComboBox();
             this.save_btn = new System.Windows.Forms.Button();
             this.load_btn = new System.Windows.Forms.Button();
+            this.key_textbox = new System.Windows.Forms.TextBox();
+            this.response_label1 = new System.Windows.Forms.TextBox();
+            this.response_label2 = new System.Windows.Forms.TextBox();
             this.sign_groupbox.SuspendLayout();
             this.json_groupbox.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -76,12 +84,15 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.response_ta);
+            this.groupBox4.Controls.Add(this.response_label1);
+            this.groupBox4.Controls.Add(this.response_label2);
             this.groupBox4.Location = new System.Drawing.Point(7, 570);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(383, 100);
+            this.groupBox4.Size = new System.Drawing.Size(450, 180);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "返回值格式";
+            //this.groupBox4.Enabled = false;
             // 
             // response_ta
             // 
@@ -90,18 +101,40 @@
             this.response_ta.Name = "response_ta";
             this.response_ta.Size = new System.Drawing.Size(370, 74);
             this.response_ta.TabIndex = 0;
+            this.response_ta.Text = "{json}|{sign}";
             this.response_ta.KeyUp += new System.Windows.Forms.KeyEventHandler(this.response_ta_Keyup);
+            // 
+            // response_label1
+            //
+			this.response_label1.BorderStyle = BorderStyle.None;
+			this.response_label1.ReadOnly = true;
+			this.response_label1.BackColor = Color.WhiteSmoke;			
+            this.response_label1.Location = new System.Drawing.Point(7, 120);
+            this.response_label1.Name = "response_label1";
+            this.response_label1.Size = new System.Drawing.Size(200, 20);
+            this.response_label1.Text = "默认格式1：{json}|{sign}";
+            // 
+            // response_label2
+            // 
+            this.response_label2.BorderStyle = BorderStyle.None;
+			this.response_label2.ReadOnly = true;
+			this.response_label2.BackColor = Color.WhiteSmoke;	
+            this.response_label2.Location = new System.Drawing.Point(7, 150);
+            this.response_label2.Name = "response_label1";
+            this.response_label2.Size = new System.Drawing.Size(300, 20);
+            this.response_label2.Text = "默认格式2：{\"datas\":\"{json}\",\"sign\":\"{sign}\"}";
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.minus_Button);
             this.groupBox3.Controls.Add(this.add_Button);
-            this.groupBox3.Location = new System.Drawing.Point(7, 370);
+            //this.groupBox3.Location = new System.Drawing.Point(7, 370);
+            this.groupBox3.Location = new System.Drawing.Point(8, 250);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(500, 82);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
+            this.groupBox3.Text = "请求值修改和读取";
             // 
             // sign_groupbox
             // 
@@ -111,13 +144,22 @@
             this.sign_groupbox.Size = new System.Drawing.Size(382, 90);
             this.sign_groupbox.Text = "sign";
             this.sign_groupbox.ForeColor = System.Drawing.Color.Blue;
+           // this.sign_groupbox.Enabled = false;
 			// 
             // signValue_text
             // 
             this.signValue_text.Location = new System.Drawing.Point(7, 30);
             this.signValue_text.Name = "signValue_text";
             this.signValue_text.Multiline = true;
-            this.signValue_text.Size = new System.Drawing.Size(200, 40);   
+            this.signValue_text.Size = new System.Drawing.Size(350, 40);  
+			// 
+            // key_text
+            // 
+            this.key_textbox.Location = new System.Drawing.Point(75, 23);
+            this.key_textbox.Name = "key_text";
+            this.key_textbox.Multiline = true;
+            this.key_textbox.Text = "请设置你的Flash Key";
+            this.key_textbox.Size = new System.Drawing.Size(150, 21);            
             // 
             // minus_Button
             // 
@@ -143,21 +185,25 @@
             // 
             this.groupBox2.Controls.Add(this.url_tb);
             this.groupBox2.Controls.Add(this.requestType_cb);
+            this.groupBox2.Controls.Add(this.request_switch);
+            this.groupBox2.Controls.Add(this.response_switch);
             this.groupBox2.Location = new System.Drawing.Point(8, 102);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(382, 120);
+            this.groupBox2.Size = new System.Drawing.Size(500, 120);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "请求地址";
             // 
             // json_groupbox
             // 
-            this.json_groupbox.Location = new System.Drawing.Point(8, 250);
+            //this.json_groupbox.Location = new System.Drawing.Point(8, 250);
+            this.json_groupbox.Location = new System.Drawing.Point(7, 370);
             this.json_groupbox.Controls.Add(this.preview_response);
             this.json_groupbox.Name = "json_label";
-            this.json_groupbox.Size = new System.Drawing.Size(382, 100);
+            this.json_groupbox.Size = new System.Drawing.Size(500, 100);
             this.json_groupbox.Text = "json返回值";
             this.json_groupbox.ForeColor = System.Drawing.Color.Black;
+            //this.json_groupbox.Enabled = false;
             // 
             // url_tb
             // 
@@ -181,22 +227,45 @@
             requestType_cb.Name = "requestType_cb";
             requestType_cb.Size = new System.Drawing.Size(86, 21);
             // 
+            // request_switch
+            // 
+            this.request_switch.AutoSize = true;
+            this.request_switch.Location = new System.Drawing.Point(256, 80);
+            this.request_switch.Name = "request_switch";
+            this.request_switch.Size = new System.Drawing.Size(48, 16);
+            this.request_switch.Visible = false;
+            this.request_switch.Checked = true;
+            this.request_switch.Text = "request";
+            this.request_switch.UseVisualStyleBackColor = true;
+            this.request_switch.CheckedChanged += new System.EventHandler(this.request_switch_CheckedChanged);
+            // 
+            // request_switch
+            // 
+            this.response_switch.AutoSize = true;
+            this.response_switch.Location = new System.Drawing.Point(400, 34);
+            this.response_switch.Name = "response_switch";
+            this.response_switch.Size = new System.Drawing.Size(48, 16);
+            this.response_switch.Text = "response";
+            this.response_switch.UseVisualStyleBackColor = true;
+            this.response_switch.CheckedChanged += new System.EventHandler(this.response_switch_CheckedChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.checkBox2);
+            //this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.key_textbox);
             this.groupBox1.Controls.Add(this.load_btn);
             this.groupBox1.Controls.Add(this.save_btn);
             this.groupBox1.Location = new System.Drawing.Point(7, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(383, 67);
+            this.groupBox1.Size = new System.Drawing.Size(500, 67);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Use FlashResponse";
             // 
             // save_btn
             // 
-            this.save_btn.Location = new System.Drawing.Point(181, 23);
+            this.save_btn.Location = new System.Drawing.Point(241, 23);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(75, 23);
             this.save_btn.TabIndex = 1;
@@ -206,7 +275,7 @@
             // 
             // load_btn
             // 
-            this.load_btn.Location = new System.Drawing.Point(282, 22);
+            this.load_btn.Location = new System.Drawing.Point(342, 23);
             this.load_btn.Name = "load_btn";
             this.load_btn.Size = new System.Drawing.Size(75, 23);
             this.load_btn.TabIndex = 2;
@@ -227,20 +296,20 @@
             //
             // checkBox2
             // 
-            this.checkBox2.AutoSize = true;
+            /*this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(80, 30);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(48, 16);
             this.checkBox2.TabIndex = 0;
             this.checkBox2.Text = "字符串转换";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.UseVisualStyleBackColor = true;*/
             
             //preiview_response
             
             this.preview_response.Location = new System.Drawing.Point(6, 30);
             this.preview_response.Multiline = true;
             this.preview_response.Name = "preview_response";
-            this.preview_response.Size = new System.Drawing.Size(310, 50);
+            this.preview_response.Size = new System.Drawing.Size(450, 50);
             //this.preview_response.TextChanged += new System.EventHandler(this.response_tb_TextChanged);
             // 
             // Form1
@@ -279,5 +348,10 @@
         private System.Windows.Forms.ComboBox requestType_cb;
         private System.Windows.Forms.Button load_btn;
         private System.Windows.Forms.Button save_btn;
+        private System.Windows.Forms.TextBox key_textbox;
+        private System.Windows.Forms.CheckBox request_switch;
+        private System.Windows.Forms.CheckBox response_switch;
+        private System.Windows.Forms.TextBox response_label1;
+        private System.Windows.Forms.TextBox response_label2;
     }
 }

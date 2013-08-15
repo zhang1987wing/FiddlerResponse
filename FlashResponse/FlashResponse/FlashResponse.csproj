@@ -42,6 +42,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Fiddler2\Fiddler.exe</HintPath>
     </Reference>
+    <Reference Include="Microsoft.JScript" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\测试\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -63,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoTamperRepBeforeHandler.cs" />
+    <Compile Include="AutoTamperReqBeforeHandler.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="OperateXML.cs" />
     <Compile Include="Para.cs" />

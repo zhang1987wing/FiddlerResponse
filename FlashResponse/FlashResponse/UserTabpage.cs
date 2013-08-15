@@ -15,14 +15,13 @@ namespace FlashResponse
 {
     public partial class UserTabpage : TabPage
     {
-        private int f = 0;
         private List<Para> paraName_list = new List<Para>(4);
         private Para para;
         private TextBox paraName_tb;
         private TextBox paraValue_tb;
         private ComboBox paraType_tb;
         private ComboBox paraDataType_cb;
-        private ToolTip toolTip1;
+        //private ToolTip toolTip1;
         private TextBox requestbody_tb;
         String jsonText = "";
         StringWriter sw;
@@ -38,7 +37,7 @@ namespace FlashResponse
             this.sign_groupbox.Enabled = false;
             this.json_groupbox.Enabled = false;
             
-            toolTip1 = new ToolTip();
+           /* toolTip1 = new ToolTip();
  
 			// Set up the delays for the ToolTip.
 			toolTip1.AutoPopDelay = 3000;
@@ -47,12 +46,22 @@ namespace FlashResponse
 			// Force the ToolTip text to be displayed whether or not the form is active.
 			toolTip1.ShowAlways = true;
 			    
-			toolTip1.SetToolTip(this.checkBox2, "启用该选项后，请求的response最后会添加urlencode编码后的值");
+			toolTip1.SetToolTip(this.checkBox2, "启用该选项后，请求的response最后会添加urlencode编码后的值");*/
         }
 
         public TextBox getResponseTextBoxValue()
         {
         	return this.response_ta;
+        }
+        
+        public TextBox getKeyTextBox()
+        {
+        	return this.key_textbox;
+        }
+        
+        public string getKeyText()
+        {
+        	return this.key_textbox.Text;
         }
 
         public string getUrlTextBoxValue()
@@ -84,6 +93,16 @@ namespace FlashResponse
         {
         	return this.requestType_cb;
         }
+        
+        public CheckBox getRequestCheckBox()
+        {
+        	return this.request_switch;
+        }
+        
+        public CheckBox getResponseCheckBox()
+        {
+        	return this.response_switch;
+        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -91,18 +110,46 @@ namespace FlashResponse
             {
                 this.groupBox2.Enabled = true;
                 this.groupBox3.Enabled = true;
-                this.groupBox4.Enabled = true;
-                this.sign_groupbox.Enabled = true;
-                this.json_groupbox.Enabled = true;
+                //this.groupBox4.Enabled = true;
+                //this.sign_groupbox.Enabled = true;
+                //this.json_groupbox.Enabled = true;
             }
             else
             {
                 this.groupBox2.Enabled = false;
                 this.groupBox3.Enabled = false;
-                this.groupBox4.Enabled = false;
+                //this.groupBox4.Enabled = false;
+                //this.sign_groupbox.Enabled = false;
+                //this.json_groupbox.Enabled = false;
+            }
+        }
+        
+        private void request_switch_CheckedChanged(object sender, EventArgs e)
+        {
+        	if (this.request_switch.Checked == true)
+        	{
+        		
+        	}
+        	else
+        	{
+
+        	}
+        }
+        
+        private void response_switch_CheckedChanged(object sender, EventArgs e)
+        {
+        	if (this.response_switch.Checked == true)
+        	{
+        		this.groupBox4.Enabled = true;
+                this.sign_groupbox.Enabled = true;
+                this.json_groupbox.Enabled = true;
+        	}
+        	else
+        	{
+        		this.groupBox4.Enabled = false;
                 this.sign_groupbox.Enabled = false;
                 this.json_groupbox.Enabled = false;
-            }
+        	}
         }
 
         private void url_tb_KeyUp(object sender, KeyEventArgs e)
@@ -129,16 +176,16 @@ namespace FlashResponse
             paraType_tb = new ComboBox();
             paraDataType_cb = new ComboBox();
 
-            this.draw_Para_Component(paraName_tb, paraValue_tb, paraType_tb, paraDataType_cb, f);
+            this.draw_Para_Component(paraName_tb, paraValue_tb, paraType_tb, paraDataType_cb, "读取", Main.f);
 
             para = new Para(paraName_tb, paraValue_tb, paraType_tb, paraDataType_cb);
             paraName_list.Add(para);
             paraName_list.TrimExcess();
 
-            f += 1;
+            Main.f += 1;
         }
 
-        public void draw_Para_Component(TextBox paraName_tb, TextBox paraValue_tb, ComboBox paraType_tb, ComboBox paraDataType_cb, int f)
+        public void draw_Para_Component(TextBox paraName_tb, TextBox paraValue_tb, ComboBox paraType_tb, ComboBox paraDataType_cb, string default_value, int f)
         {
             paraName_tb.Location = new System.Drawing.Point(7, 10 * (f + 1) + 21 * (f + 1));
             paraName_tb.Name = "paraName_tb" + f;
@@ -146,31 +193,50 @@ namespace FlashResponse
 
             paraValue_tb.Location = new System.Drawing.Point(149, 10 * (f + 1) + 21 * (f + 1));
             paraValue_tb.Name = "paraValue_tb" + f;
-            paraValue_tb.Size = new System.Drawing.Size(100, 21);
+            paraValue_tb.Size = new System.Drawing.Size(200, 21);
 
-            paraDataType_cb.FormattingEnabled = true;
+            /*paraDataType_cb.FormattingEnabled = true;
             paraDataType_cb.Items.AddRange(new object[] {
             "Int",
             "Text"});
             paraDataType_cb.Location = new System.Drawing.Point(291, 10 * (f + 1) + 21 * (f + 1));
             paraDataType_cb.Name = "paraDataType_cb" + f;
-            paraDataType_cb.Size = new System.Drawing.Size(86, 21);
+            paraDataType_cb.Size = new System.Drawing.Size(86, 21);*/
             
-            paraType_tb.FormattingEnabled = true;
-            paraType_tb.Items.AddRange(new object[] {
-            "MD5",
-            "请求值",
-            "响应值"});
-            paraType_tb.SelectedValueChanged += new System.EventHandler(this.paraType_tb_SelectedIndexChanged);
-            paraType_tb.Location = new System.Drawing.Point(411, 10 * (f + 1) + 21 * (f + 1));
-            paraType_tb.Name = "paraType_tb" + f;
-            paraType_tb.Size = new System.Drawing.Size(86, 21);
-
+            try
+            {
+            	paraType_tb.Text = default_value;
+            	paraType_tb.DropDownStyle = ComboBoxStyle.DropDownList;
+            	paraType_tb.FormattingEnabled = true;
+	            paraType_tb.Items.AddRange(new object[] {
+	            //"MD5",
+	            "读取",
+	            //"响应值",
+	            "修改"});
+            	paraType_tb.SelectedIndex = 0;
+	            paraType_tb.SelectedValueChanged += new System.EventHandler(this.paraType_tb_SelectedIndexChanged);
+	            paraType_tb.Location = new System.Drawing.Point(411, 10 * (f + 1) + 21 * (f + 1));
+	            paraType_tb.Name = "paraType_tb" + f;
+	            paraType_tb.Size = new System.Drawing.Size(86, 21);
+            }
+            catch(Exception e)
+            {
+            	Email.sendMessage(e.ToString());
+            }
+            
+            if (this.paraType_tb.Text == "读取")
+        	{
+        		this.paraValue_tb.ReadOnly = true;
+        	}else
+        	{
+        		this.paraValue_tb.ReadOnly = false;
+        	}
+            
             this.groupBox3.Size = new System.Drawing.Size(this.groupBox3.Size.Width, this.groupBox3.Size.Height + 10 + 21);
             this.groupBox3.Controls.Add(paraName_tb);
             this.groupBox3.Controls.Add(paraValue_tb);
             this.groupBox3.Controls.Add(paraType_tb);
-            this.groupBox3.Controls.Add(paraDataType_cb);
+            //this.groupBox3.Controls.Add(paraDataType_cb);
 
             foreach (Control btn in this.groupBox3.Controls)
             {
@@ -180,6 +246,7 @@ namespace FlashResponse
                 }
             }
 
+            this.json_groupbox.Location = new Point(this.json_groupbox.Location.X, this.json_groupbox.Location.Y + 10 + 21);
             this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y + 10 + 21);
             this.sign_groupbox.Location = new Point(this.sign_groupbox.Location.X, this.sign_groupbox.Location.Y + 10 + 21);
             
@@ -209,13 +276,14 @@ namespace FlashResponse
                     }
                 }
 
+                this.json_groupbox.Location = new Point(this.json_groupbox.Location.X, this.json_groupbox.Location.Y - 10 - 21);
                 this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y - 10 - 21);
                 this.sign_groupbox.Location = new Point(this.sign_groupbox.Location.X, this.sign_groupbox.Location.Y - 10 - 21);
                 
                 this.AutoScroll = true;
                 this.AutoScrollPosition = new Point(0, 60 + 21);
 
-                f -= 1;
+                Main.f -= 1;
             }
             else
             {
@@ -226,7 +294,15 @@ namespace FlashResponse
         /*更新json原始值*/
         private void paraType_tb_SelectedIndexChanged(object sender, EventArgs e)
         {
-        	this.updatepPreview_response1();
+        	if (this.paraType_tb.Text == "读取")
+        	{
+        		this.paraValue_tb.ReadOnly = true;
+        	}else
+        	{
+        		this.paraValue_tb.ReadOnly = false;
+        	}
+        	
+        	//this.updatepPreview_response1();
         }
         
         private void requestType_cb_SelectedIndexChanged(object sender, EventArgs e)
@@ -244,6 +320,7 @@ namespace FlashResponse
                 this.requestbody_tb.Location = new System.Drawing.Point(7, 80);
                 this.requestbody_tb.Name = "requestbody_tb";
                 this.requestbody_tb.Size = new System.Drawing.Size(200, 21);
+                this.requestbody_tb.Visible = false;
 
                 groupBox2.Controls.Add(this.requestbody_tb);
             }
@@ -312,19 +389,23 @@ namespace FlashResponse
             if (paraName_list.Count != 0 && this.preview_response.Text != "")
             {
                 string[] requestPar = this.preview_response.Text.Split(new char[5] { ',', '{', '}', '[', ']' });
-
+                
                 foreach (Para para in paraName_list)
                 {
-                    if (para.getParaTypeComboBox().Text == "请求值")
+                    if (para.getParaTypeComboBox().Text == "读取")
                     {
                         for (int i = 0; i < requestPar.Length; i++)
-                        {
+                        {       	
                             string ii = requestPar[i];
+                            
+                            if (para.getParaName() == "")
+                            {
+                            	break;
+                            }
                             if (ii.Contains(para.getParaName()))
                             {
                                 ii = ii.Replace(ii.Split(new char[1] { '"' })[3], para.getParaValue());
                                 this.preview_response.Text = this.preview_response.Text.Replace(requestPar[i], ii);
-
                                 break;
                             }
                         }
@@ -417,13 +498,14 @@ namespace FlashResponse
                         }
                     }
 
+                    this.json_groupbox.Location = new Point(this.json_groupbox.Location.X, this.json_groupbox.Location.Y - 10 - 21);
                     this.groupBox4.Location = new Point(this.groupBox4.Location.X, this.groupBox4.Location.Y - 10 - 21);
                     this.sign_groupbox.Location = new Point(this.sign_groupbox.Location.X, this.sign_groupbox.Location.Y - 10 - 21);
 
                     this.AutoScroll = true;
                     this.AutoScrollPosition = new Point(0, 60 + 21);
 
-                    f -= 1;
+                    Main.f -= 1;
                 }
             }
         }

@@ -57,7 +57,7 @@ namespace FlashResponse
 
             foreach (Para para in paraValue_list)
             {
-                if (para.getParaTypeComboBox().Text == "请求值")
+                if (para.getParaTypeComboBox().Text == "读取")
                 {
                     foreach (string ii in requestPar)
                     {
@@ -141,7 +141,10 @@ namespace FlashResponse
             		if(m.Value == "json")
             		{
             			paraValue = paraValue.Replace("{" + m.Value + "}", this.jsonTOurlencode(oPage.getPreviewTextbox().Text));
-            		}
+            		}else if(m.Value == "fKey")
+                    {
+                    		paraValue = paraValue.Replace("{" + m.Value + "}", oPage.getKeyText());
+                    }
             	}
             }
             else
@@ -156,6 +159,9 @@ namespace FlashResponse
                     	}else if(m.Value == "json")
                     	{
                     		paraValue = paraValue.Replace("{" + m.Value + "}", this.jsonTOurlencode(oPage.getPreviewTextbox().Text));
+                    	}else if(m.Value == "fKey")
+                    	{
+                    		paraValue = paraValue.Replace("{" + m.Value + "}", oPage.getKeyText());
                     	}
                 	}
             	}
@@ -170,7 +176,8 @@ namespace FlashResponse
         /*JSON转urlencode*/
         private string jsonTOurlencode(String jsonText)
         {
-        	return AutoTamperRepBeforeHandler.UrlEncode2(jsonText, Encoding.UTF8);
+        	 return Microsoft.JScript.GlobalObject.escape(jsonText).Replace("%u", "%5Cu");
+        	//return AutoTamperRepBeforeHandler.UrlEncode2(Microsoft.JScript.GlobalObject.escape(jsonText).Replace("%", "/"), Encoding.UTF8);
         }
         
         /*Urlencode转换*/
