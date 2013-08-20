@@ -91,8 +91,6 @@ namespace FlashResponse
         	{
         		this.paraValue_tb.ReadOnly = false;
         	}
-        	
-        	//this.updatepPreview_response1();
         }
     }
 }

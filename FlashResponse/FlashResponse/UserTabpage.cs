@@ -110,17 +110,17 @@ namespace FlashResponse
             {
                 this.groupBox2.Enabled = true;
                 this.groupBox3.Enabled = true;
-                //this.groupBox4.Enabled = true;
-                //this.sign_groupbox.Enabled = true;
-                //this.json_groupbox.Enabled = true;
+                this.groupBox4.Enabled = true;
+                this.sign_groupbox.Enabled = true;
+                this.json_groupbox.Enabled = true;
             }
             else
             {
                 this.groupBox2.Enabled = false;
                 this.groupBox3.Enabled = false;
-                //this.groupBox4.Enabled = false;
-                //this.sign_groupbox.Enabled = false;
-                //this.json_groupbox.Enabled = false;
+                this.groupBox4.Enabled = false;
+                this.sign_groupbox.Enabled = false;
+                this.json_groupbox.Enabled = false;
             }
         }
         

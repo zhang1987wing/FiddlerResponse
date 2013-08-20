@@ -211,7 +211,7 @@ namespace FlashResponse
             this.url_tb.Name = "url_tb";
             this.url_tb.Size = new System.Drawing.Size(200, 21);
             this.url_tb.TabIndex = 0;
-            this.url_tb.Text = "默认的";
+            this.url_tb.Text = "请求关键字";
             this.url_tb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.url_tb_KeyUp);
             // 
             // requestType_cb
@@ -242,6 +242,7 @@ namespace FlashResponse
             // request_switch
             // 
             this.response_switch.AutoSize = true;
+            this.response_switch.Checked = true;
             this.response_switch.Location = new System.Drawing.Point(400, 34);
             this.response_switch.Name = "response_switch";
             this.response_switch.Size = new System.Drawing.Size(48, 16);
