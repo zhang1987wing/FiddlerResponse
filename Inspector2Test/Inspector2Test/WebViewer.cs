@@ -79,6 +79,8 @@ namespace Inspector2Test
         {
             return 0;
         }
+        
+        
 
         public void Clear()
         {
