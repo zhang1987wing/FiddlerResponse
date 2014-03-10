@@ -213,6 +213,7 @@ namespace FlashResponse
 	            "读取",
 	            //"响应值",
 	            "修改"});
+            	
             	paraType_tb.SelectedIndex = 0;
 	            paraType_tb.SelectedValueChanged += new System.EventHandler(this.paraType_tb_SelectedIndexChanged);
 	            paraType_tb.Location = new System.Drawing.Point(411, 10 * (f + 1) + 21 * (f + 1));
